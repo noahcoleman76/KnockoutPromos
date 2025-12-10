@@ -56,37 +56,74 @@ function App() {
         </section>
 
         {/* About Section */}
-        <section className="section" id="about">
+        <section className="section section-alt" id="about">
           <div className="section-inner">
-            <h2 className="section-title">What is Knockout Promos?</h2>
-            <p className="section-text">
-              Knockout Promos is a marketing engine built around{" "}
-              <strong>exclusive, high-intent offers</strong>.
-            </p>
-            <p className="section-text">
-              We connect the best products and services with people who are
-              seriously looking to buy. Instead of blasting generic ads, we
-              create targeted, limited-time promotions that feel special —
-              because they are.
-            </p>
-            <p className="section-text">
-              When our audience claims an offer,{" "}
-              <strong>everyone wins</strong>:
-            </p>
-            <ul className="list">
-              <li>
-                <strong>Customers</strong> get access to exclusive deals they
-                can&apos;t just Google and find.
-              </li>
-              <li>
-                <strong>Businesses</strong> get warm, purchase-ready leads and
-                new recurring customers.
-              </li>
-              <li>
-                <strong>We</strong> earn a commission only when we help drive
-                real results.
-              </li>
-            </ul>
+
+            {/* Small tag over title */}
+            <div className="about-tag">About Knockout Promos</div>
+
+            <div className="about-layout">
+              <div className="about-main">
+                <h2 className="section-title about-title">
+                  What is <span className="highlight">Knockout Promos?</span>
+                </h2>
+
+                <p className="section-text">
+                  Knockout Promos hooks you up with{" "}
+                  <strong>exclusive, insider-level deals</strong> you won’t find anywhere else.
+                </p>
+
+                <p className="section-text">
+                  We partner with strategic suppliers and service providers to bring you
+                  limited-time offers on subscription services, accessories, and high-value products —
+                  including <strong>deep discounts, bonuses, and even freebies</strong>.
+                </p>
+
+                <p className="section-text">
+                  When you claim an offer, <strong>everyone wins</strong>:
+                </p>
+
+                <ul className="about-list">
+                  <li>
+                    <strong>Customers</strong> get access to exclusive deals they can’t just Google and find.
+                  </li>
+                  <li>
+                    <strong>Brands</strong> gain warm, ready-to-buy customers who actually stick around.
+                  </li>
+                  <li>
+                    <strong>We</strong> only earn when we help drive real results — simple, transparent, effective.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Right-side highlight card */}
+              <aside className="about-highlight">
+                <h3>Right now</h3>
+                <p>
+                  We’re already shaking up the{" "}
+                  <strong>car industry</strong> with standout perks for new buyers.
+                </p>
+
+                <div className="about-highlight-divider" />
+
+                <p className="about-highlight-sub">
+                  Next up: more markets, more products, more ways to save.
+                </p>
+                <p className="about-highlight-note">
+                  Big deals. Real savings. Only at <strong>Knockout Promos</strong>.
+                </p>
+              </aside>
+            </div>
+
+            {/* CTA Button */}
+            <div className="about-cta">
+              <a href="#promos" className="btn btn-primary about-cta-btn">
+                View Current Promotions
+              </a>
+              <p className="about-cta-note">
+                See live deals, discounts & freebies available right now.
+              </p>
+            </div>
           </div>
         </section>
 

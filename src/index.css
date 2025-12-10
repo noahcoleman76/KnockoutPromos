@@ -7,12 +7,14 @@
   --muted: #a0a0a0;           /* neutral gray */
 
   --accent: #ec2326;          /* primary Knockout red */
-  --accent-dark: #a31114;     /* deeper red for gradients/shadows */
+  --accent-dark: #a31114;     /* deeper red */
   --accent-soft: rgba(236, 35, 38, 0.14);
 
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
 }
+
+/* Reset & base */
 
 *,
 *::before,
@@ -28,15 +30,13 @@ body,
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  background: linear-gradient(
-    180deg,
-    #2d2f36 0%,
-    #1b1c20 40%,
-    #0d0e11 100%
-  );
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #2d2f36 0%, #1b1c20 40%, #0d0e11 100%);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
 }
@@ -45,12 +45,13 @@ body {
   min-height: 100vh;
 }
 
-/* Smooth scrolling for nav anchors */
-html {
-  scroll-behavior: smooth;
+.highlight {
+  color: var(--accent);
 }
 
-/* Header */
+/* =========================
+   Header & Navigation
+   ========================= */
 
 .header {
   position: fixed;
@@ -60,7 +61,7 @@ html {
   z-index: 30;
   padding: 0.75rem 1.5rem;
   backdrop-filter: blur(20px);
-  background: rgba(45, 47, 54, 0.65); /* neutral gray */
+  background: rgba(45, 47, 54, 0.65);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -84,7 +85,6 @@ html {
   width: auto;
 }
 
-/* Nav */
 .nav {
   display: flex;
   gap: 1rem;
@@ -104,7 +104,9 @@ html {
   background-color: rgba(255, 255, 255, 0.06);
 }
 
-/* Hero */
+/* =========================
+   Hero
+   ========================= */
 
 .hero {
   display: flex;
@@ -128,21 +130,14 @@ html {
   text-align: center;
 }
 
-/* BIG, centered title */
 .hero-title {
   font-size: clamp(4.5rem, 10vw, 7rem);
   line-height: 1.02;
-  margin: 4rem 0 2rem 0;
+  margin: 4rem 0 2rem;
   text-align: center;
   color: #ffffff;
 }
 
-
-.highlight {
-  color: var(--accent);
-}
-
-/* Simple CTA block: no background card */
 .hero-CTA {
   display: flex;
   flex-direction: column;
@@ -151,7 +146,6 @@ html {
   width: 100%;
 }
 
-/* Informational subtitle under title */
 .hero-subtitle {
   font-size: 1.15rem;
   color: var(--muted);
@@ -188,24 +182,28 @@ html {
     box-shadow 0.15s ease;
 }
 
-/* MAIN CTA — extremely obvious */
-.hero-actions .btn-primary {
-  width: 60vw;                         /* HUGE, responsive width */
-  max-width: 900px;                    /* keeps it from getting too insane on desktops */
-  padding: 1.4rem 0;                   /* tall button */
-  font-size: clamp(1.4rem, 3vw, 2.4rem); /* BIG readable letters */
-  font-weight: 800;                    /* thick, confident */
-  text-transform: uppercase;
+/* Primary button baseline */
 
+.btn-primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   border: none;
+  border-color: transparent;
   color: #fff;
-
   border-radius: 50px;
+}
+
+/* Hero main CTA — big & loud */
+
+.hero-actions .btn-primary {
+  width: 60vw;
+  max-width: 900px;
+  padding: 1.4rem 0;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 800;
+  text-transform: uppercase;
   box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.6),
     0 0 25px rgba(236, 35, 38, 0.5);
-  transition: transform 0.1s ease, box-shadow 0.15s ease;
 }
 
 .hero-actions .btn-primary:hover {
@@ -215,28 +213,7 @@ html {
     0 0 30px rgba(236, 35, 38, 0.65);
 }
 
-/* Secondary CTA — smaller, less loud */
-.hero-actions .btn-outline {
-  font-size: 1rem;
-  padding: 0.6rem 1.4rem;
-  width: auto;
-  opacity: 0.7;
-}
-
-
-.hero-actions .btn-outline:hover {
-  border-color: var(--accent);
-  background: rgba(236, 35, 38, 0.08);
-  color: #f9fafb;
-}
-
-/* Fallback button styles if used elsewhere */
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-  border-color: transparent;
-  color: #fff;
-}
+/* Secondary CTA */
 
 .btn-outline {
   border-color: rgba(156, 156, 156, 0.6);
@@ -249,12 +226,26 @@ html {
   background: rgba(20, 20, 20, 0.95);
 }
 
+.hero-actions .btn-outline {
+  font-size: 1rem;
+  padding: 0.6rem 1.4rem;
+  width: auto;
+  opacity: 0.7;
+}
+
+.hero-actions .btn-outline:hover {
+  background: rgba(236, 35, 38, 0.08);
+  color: #f9fafb;
+}
+
 .hero-note {
   font-size: 0.85rem;
   color: var(--muted);
 }
 
-/* Sections */
+/* =========================
+   Sections (generic)
+   ========================= */
 
 .section {
   padding: 5rem 1.5rem;
@@ -280,7 +271,7 @@ html {
 }
 
 .list {
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 0;
   padding-left: 1.25rem;
 }
 
@@ -289,22 +280,178 @@ html {
   color: #d1d5db;
 }
 
-/* Promos */
+/* =========================
+   About Section
+   ========================= */
+
+#about {
+  position: relative;
+}
+
+#about.section-alt {
+  background: radial-gradient(circle at top, #2d2d31 0, #444548 55%, #000 100%);
+}
+
+/* Overline tag above title */
+
+.about-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(236, 35, 38, 0.12);
+  color: var(--accent);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+/* Layout: text + side card */
+
+.about-layout {
+  margin-top: 1.8rem;
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.about-title {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  margin-bottom: 1rem;
+}
+
+/* Slightly larger, more readable body text in About */
+
+#about .section-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #e5e7eb;
+}
+
+/* Custom bullet list */
+
+.about-list {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.about-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: #e5e7eb;
+}
+
+.about-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  box-shadow: 0 0 14px rgba(236, 35, 38, 0.75);
+}
+
+/* Highlight card on the right */
+
+.about-highlight {
+  padding: 1.6rem 1.4rem;
+  border-radius: var(--radius-xl);
+  background: radial-gradient(circle at top left, var(--accent-soft), var(--bg-alt));
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+}
+
+.about-highlight h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #f9fafb;
+}
+
+.about-highlight p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: #e5e7eb;
+}
+
+.about-highlight-divider {
+  margin: 0.9rem 0;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(236, 35, 38, 0.9),
+    rgba(236, 35, 38, 0)
+  );
+}
+
+.about-highlight-sub {
+  font-weight: 500;
+}
+
+.about-highlight-note {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* CTA under about text */
+
+.about-cta {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.about-cta-btn {
+  width: min(60vw, 520px);
+  padding: 1rem 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 999px;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.65),
+    0 0 22px rgba(236, 35, 38, 0.55);
+}
+
+.about-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.75),
+    0 0 30px rgba(236, 35, 38, 0.7);
+}
+
+.about-cta-note {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* =========================
+   Promos
+   ========================= */
 
 .coming-soon-card {
   margin-top: 1.75rem;
   padding: 1.5rem 1.25rem;
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
-  background: radial-gradient(
-    circle at top left,
-    var(--accent-soft),
-    var(--bg-alt)
-  );
+  background: radial-gradient(circle at top left, var(--accent-soft), var(--bg-alt));
 }
 
 .coming-soon-card h3 {
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.75rem;
 }
 
 .coming-soon-tag {
@@ -314,7 +461,9 @@ html {
   font-weight: 500;
 }
 
-/* Partnerships */
+/* =========================
+   Partnerships
+   ========================= */
 
 .partnership-grid {
   display: grid;
@@ -332,7 +481,7 @@ html {
 }
 
 .card h3 {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.5rem;
 }
 
 .card p {
@@ -350,7 +499,9 @@ html {
   text-decoration: underline;
 }
 
-/* Footer */
+/* =========================
+   Footer
+   ========================= */
 
 .footer {
   border-top: 1px solid #111111;
@@ -374,14 +525,28 @@ html {
   opacity: 0.9;
 }
 
-/* Layout tweaks */
+/* =========================
+   Layout tweaks
+   ========================= */
 
 .section,
 .hero {
   scroll-margin-top: 80px;
 }
 
-/* Responsive */
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 900px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-highlight {
+    order: -1; /* show highlight above on mobile */
+  }
+}
 
 @media (max-width: 768px) {
   .hero {
@@ -395,6 +560,13 @@ html {
 
   .partnership-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-cta-btn {
+    width: 100%;
+    font-size: 1rem;
   }
 }
 
