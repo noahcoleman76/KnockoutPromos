@@ -36,26 +36,21 @@ function App() {
                 Exclusive offers you{" "}
                 <span className="highlight">won&apos;t find anywhere else.</span>
               </h1>
-              <p className="hero-subtitle">
-                Knockout Promos connects high-value products and services with
-                people who are ready to buy — through strategic, out-of-the-box
-                marketing that hits harder than ordinary ads.
-              </p>
+              <div className="hero-CTA">
+                <p className="hero-subtitle">
+                  Your source for top-quality products, services, and limited-time offers you won’t find anywhere else.
+                </p>
 
-              <div className="hero-actions">
-                <a href="#promos" className="btn btn-primary">
-                  Explore upcoming promos
-                </a>
-                <a href="#partnerships" className="btn btn-outline">
-                  Partner as a business
-                </a>
+                <div className="hero-actions">
+                  <a href="#promos" className="btn btn-primary">
+                    View Current Offers
+                  </a>
+                  <a href="#partnerships" className="btn btn-outline">
+                    Partner With Us
+                  </a>
+                </div>
               </div>
 
-              <p className="hero-note">
-                For customers: get access to curated, limited-time deals. <br />
-                For businesses: tap into a promo engine that drives real sales,
-                not just clicks.
-              </p>
             </div>
           </div>
         </section>
