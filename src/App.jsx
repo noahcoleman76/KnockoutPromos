@@ -1,7 +1,6 @@
 // src/App.jsx
 import React from "react";
 import logo from "./assets/mainLogo.png";
-// https://www.aprilford.com/
 
 function App() {
   return (

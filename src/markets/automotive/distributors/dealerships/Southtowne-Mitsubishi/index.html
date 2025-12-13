@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dealership Promotion</title>
+  <link rel="stylesheet" href="../../promoStyles.css" />
+  <script>
+    function clearInputs() {
+      sessionStorage.clear();
+      document.getElementById('fname').value = "";
+      document.getElementById('lname').value = "";
+      document.getElementById('email').value = "";
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+
+      let fname = document.getElementById('fname').value.trim();
+      let lname = document.getElementById('lname').value.trim();
+      let email = document.getElementById('email').value.trim();
+      let dealership = "Southtowne Mitsubishi";
+      let promo = "30";
+
+      if (!fname || !lname || !email) {
+        alert("All fields are required.");
+        return;
+      }
+
+      let formData = { fname, lname, email, dealership, promo };
+
+      fetch('https://script.google.com/macros/s/AKfycbxB8gsbZb7466WYQtwyE4CVO_9LQDnjzXZfC8t-Q2QPxwFO9LeAb3PBZPzHPillw84L/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      }).then(() => {
+        sessionStorage.clear();
+        window.location.href = '../../success.html';
+      }).catch(error => console.error('Error:', error));
+    }
+
+    window.onload = function () {
+      clearInputs();
+    };
+  </script>
+</head>
+
+<body>
+  <div class="page">
+    <main class="card-wrapper">
+      <div class="form-container">
+        <!-- First logo (keep current feel / size) -->
+        <img src="../../images/Client Logos/QQlogo.png" alt="Quick Quack Logo" class="brand-logo" />
+
+        <!-- Second logo (constrained to 150px height and inside card) -->
+        <img src="./logo.png" alt="Promotion Logo" class="partner-logo" />
+
+        <p class="intro-text">
+          Southtowne Mitsubishi has unlocked an exclusive car wash offer for you.
+          Enjoy 30 days free, then $5 off every month after.
+        </p>
+        <p class="intro-text">
+          Enter your information below to receive your promo code by email.
+        </p>
+
+        <form onsubmit="submitForm(event)">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" class="input-field" required />
+
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" class="input-field" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" class="input-field" required />
+
+          <button type="submit" class="submit-button">Submit</button>
+        </form>
+      </div>
+    </main>
+
+    <p class="footer">
+      This site is powered by CODEV Marketing and is authorized by S&amp;D Wash Management LLC
+    </p>
+  </div>
+</body>
+
+</html>
