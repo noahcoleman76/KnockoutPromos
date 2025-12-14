@@ -154,7 +154,7 @@ export default function DealershipPromoPage() {
       </main>
 
       <p className="footer">
-        This site is powered by CODEV Marketing and is authorized by S&amp;D Wash
+        This site is powered by Knockout Promos and is authorized by S&amp;D Wash
         Management LLC
       </p>
     </div>
