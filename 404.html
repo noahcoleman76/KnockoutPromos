@@ -4,10 +4,7 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script type="text/javascript">
-      // SPA GitHub Pages redirect (works for project pages)
-      // IMPORTANT: segmentCount = 1 for https://user.github.io/REPO_NAME
-      // If you were hosting at a root custom domain *user site*, it would be 0.
-      var segmentCount = 1;
+      var segmentCount = 1; // ✅ GitHub project pages: /REPO_NAME
 
       var l = window.location;
       l.replace(
@@ -15,15 +12,9 @@
           "//" +
           l.hostname +
           (l.port ? ":" + l.port : "") +
-          l.pathname
-            .split("/")
-            .slice(0, 1 + segmentCount)
-            .join("/") +
+          l.pathname.split("/").slice(0, 1 + segmentCount).join("/") +
           "/?p=/" +
-          l.pathname
-            .split("/")
-            .slice(1 + segmentCount)
-            .join("/") +
+          l.pathname.split("/").slice(1 + segmentCount).join("/") +
           (l.search ? "&q=" + l.search.slice(1) : "") +
           l.hash
       );

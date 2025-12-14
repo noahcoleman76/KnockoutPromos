@@ -6,6 +6,32 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Knockout Promos</title>
+  <script type="text/javascript">
+    (function () {
+      var l = window.location;
+      var params = new URLSearchParams(l.search);
+
+      // Only handle the redirect params once
+      // Prevents endless loops if p/q remain in the URL.
+      if (!params.has("p")) return;
+
+      var p = params.get("p") || "/";
+      var q = params.get("q"); // optional original querystring (no leading '?')
+
+      // Build the real path we actually want (e.g. "/links")
+      var newPath = p + (q ? "?" + q : "") + (l.hash || "");
+
+      // Remove p and q from the querystring so we don't loop
+      params.delete("p");
+      params.delete("q");
+
+      // If you had other query params, keep them
+      var rest = params.toString();
+      var finalUrl = newPath + (rest ? (newPath.includes("?") ? "&" : "?") + rest : "");
+
+      window.history.replaceState(null, "", finalUrl);
+    })();
+  </script>
   <script type="module" crossorigin src="/assets/index-YkRvvEs8.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-c73yE4GS.css">
 </head>
