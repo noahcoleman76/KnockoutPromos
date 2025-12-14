@@ -3,19 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <title>Redirecting...</title>
-    <script>
-      // GitHub Pages SPA redirect:
-      // redirect /some/path -> /?p=/some/path
-      (function () {
-        var path = window.location.pathname;
-        var search = window.location.search;
-        var hash = window.location.hash;
-        var newUrl =
-          window.location.origin +
-          "/?p=" +
-          encodeURIComponent(path + search + hash);
-        window.location.replace(newUrl);
-      })();
+    <script type="text/javascript">
+      // SPA GitHub Pages redirect (works for project pages)
+      // IMPORTANT: segmentCount = 1 for https://user.github.io/REPO_NAME
+      // If you were hosting at a root custom domain *user site*, it would be 0.
+      var segmentCount = 1;
+
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + segmentCount)
+            .join("/") +
+          "/?p=/" +
+          l.pathname
+            .split("/")
+            .slice(1 + segmentCount)
+            .join("/") +
+          (l.search ? "&q=" + l.search.slice(1) : "") +
+          l.hash
+      );
     </script>
   </head>
   <body></body>
