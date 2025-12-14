@@ -1,6 +1,7 @@
 import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png"; // adjust path if needed
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import "../styles/promoStyles.css"
 
 // Adjust this import to wherever your registry lives:
 import { getDealershipById } from "../markets/automotive/distributors/dealerships/dealershipRegistry";

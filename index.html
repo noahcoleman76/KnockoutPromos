@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>knockout-promos</title>
+    <title>Knockout Promos</title>
+    <script>
+  // Restore route after GitHub Pages 404 redirect
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var p = params.get("p");
+    if (p) {
+      window.history.replaceState(null, "", p);
+    }
+  })();
+</script>
+
   </head>
   <body>
     <div id="root"></div>
