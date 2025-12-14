@@ -2,6 +2,8 @@ import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png"; // ad
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/promoStyles.css"
+console.log("promoStyles loaded");
+
 
 // Adjust this import to wherever your registry lives:
 import { getDealershipById } from "../markets/automotive/distributors/dealerships/dealershipRegistry";
@@ -30,7 +32,7 @@ export default function DealershipPromoPage() {
 
   if (!entry) {
     return (
-      <div className="page">
+      <div className="page promo-scope">
         <main className="card-wrapper">
           <div className="form-container">
             <h1 className="thankyou">Dealership Not Found</h1>
@@ -96,7 +98,7 @@ export default function DealershipPromoPage() {
   };
 
   return (
-    <div className="page">
+    <div className="page promo-scope">
       <main className="card-wrapper">
         <div className="form-container">
           {/* First logo (Quick Quack) */}

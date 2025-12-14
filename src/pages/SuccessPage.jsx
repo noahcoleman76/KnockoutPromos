@@ -1,9 +1,10 @@
 import React from "react";
 import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png"; // adjust path if needed
+import "../styles/promoStyles.css"
 
 export default function SuccessPage() {
   return (
-    <div className="page">
+    <div className="page promo-scope">
       <main className="card-wrapper">
         <div className="form-container">
           <h1 className="thankyou">Thank You!</h1>

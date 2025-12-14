@@ -1,212 +1,231 @@
-/* Reset / base */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+/* =========================
+   Promo Pages Scoped Styles
+   Apply ONLY inside .promo-scope
+   ========================= */
+
+.promo-scope,
+.promo-scope * ,
+.promo-scope *::before,
+.promo-scope *::after {
+  box-sizing: border-box;
 }
 
-/* General Page Styling */
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #f79239, #ffcf44);
-    color: #fff;
-    margin: 0;
-    padding: 0;
+/* "Page" base — replaces body styling but scoped */
+.promo-scope {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #f79239, #ffcf44);
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  /* keeps the gradient filling full height even if content is short */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Full-page layout: card centered, footer at bottom */
-.page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.promo-scope .page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Wrapper that centers the card vertically */
-.card-wrapper {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 16px;
+.promo-scope .card-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: 16px;
 }
 
 /* Form Container */
-.form-container {
-    background: #177550;
-    padding: 24px 20px 28px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: min(90vw, 420px);
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.promo-scope .form-container {
+  background: #177550;
+  padding: 24px 20px 28px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: min(90vw, 420px);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* First logo â€“ keep similar size but responsive */
-.brand-logo {
-    width: 90%;
-    max-width: 260px;
-    height: auto;
-    margin-bottom: 12px;
+/* First logo — keep similar size but responsive */
+.promo-scope .brand-logo {
+  width: 90%;
+  max-width: 260px;
+  height: auto;
+  margin-bottom: 12px;
 }
 
-/* Second logo â€“ constrained inside card, max 150px height */
-.partner-logo {
-    max-width: 100%;
-    max-height: 150px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 16px;
+/* Second logo — constrained inside card, max 150px height */
+.promo-scope .partner-logo {
+  max-width: 100%;
+  max-height: 150px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 16px;
 }
 
 /* Intro text */
-.intro-text {
-    font-size: 14px;
-    margin: 0 0 20px;
-    text-align: center;
-    line-height: 1.4;
+.promo-scope .intro-text {
+  font-size: 14px;
+  margin: 0 0 20px;
+  text-align: center;
+  line-height: 1.4;
 }
 
 /* Form */
-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+.promo-scope form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Form Elements */
-label {
-    font-size: 14px;
-    font-weight: bold;
-    display: block;
-    margin-top: 6px;
-    margin-bottom: 4px;
-    text-align: left;
+.promo-scope label {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  text-align: left;
 }
 
-.input-field {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
+.promo-scope .input-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+
+  /* helps beat global inputs */
+  outline: none;
+}
+
+.promo-scope .input-field:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.45);
+  outline-offset: 2px;
 }
 
 /* Button */
-.submit-button {
-    width: 70%;
-    padding: 12px;
-    margin: 12px auto 0;
-    display: block;
-    background: #f79239;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+.promo-scope .submit-button {
+  width: 70%;
+  padding: 12px;
+  margin: 12px auto 0;
+  display: block;
+
+  background: #f79239;
+  border: none;
+  border-radius: 5px;
+
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+
+  text-decoration: none; /* for <a class="submit-button"> */
 }
 
-.submit-button:hover {
-    background: #fa9d4c;
+.promo-scope .submit-button:hover {
+  background: #fa9d4c;
 }
 
 /* Footer at bottom */
-.footer {
-    font-size: 12px;
-    text-align: center;
-    margin: 12px 16px 20px;
-    max-width: 90%;
+.promo-scope .footer {
+  font-size: 12px;
+  text-align: center;
+  margin: 12px 16px 20px;
+  max-width: 90%;
 }
 
 /* Links */
-a {
-    text-decoration: none;
-    color: inherit;
+.promo-scope a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Thank you heading on success page */
-.thankyou {
-    margin: 0 0 12px;
-}
-
-/* Reuse intro text styling in success card */
-.intro-text {
-    font-size: 14px;
-    margin: 0 0 20px;
-    text-align: center;
-    line-height: 1.4;
+.promo-scope .thankyou {
+  margin: 0 0 12px;
 }
 
 /* Next steps area */
-.nextSteps {
-    width: 100%;
-    text-align: left;
-    margin-top: 8px;
+.promo-scope .nextSteps {
+  width: 100%;
+  text-align: left;
+  margin-top: 8px;
 }
 
 /* Bigger "What's Next?" */
-.next-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0 0 12px;
-    text-align: center;
+.promo-scope .next-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 12px;
+  text-align: center;
 }
 
 /* Bullet list of steps */
-.next-list {
-    list-style-type: disc;
-    padding-left: 20px;
-    margin: 0;
+.promo-scope .next-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
 }
 
-.next-list li {
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 10px;
-    padding: 0;
-    margin-left: auto;
-    margin-right: auto;
+.promo-scope .next-list li {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Make the button-link look good inside the last bullet */
-.submit-button {
-    width: 90%;
-    display: inline-block;
-    margin-top: 8px;
-    padding-inline: 18px;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+.promo-scope .next-list .submit-button {
+  width: 90%;
+  display: inline-block;
+  margin-top: 8px;
+  padding-inline: 18px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-/* Success delivery callout (makes the 24-business-hours message obvious) */
-.delivery-box {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.14);
-    border: 2px solid rgba(255, 255, 255, 0.28);
-    border-radius: 12px;
-    padding: 14px 14px 12px;
-    margin: 0 0 18px;
-    text-align: center;
+/* Success delivery callout */
+.promo-scope .delivery-box {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.14);
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  padding: 14px 14px 12px;
+  margin: 0 0 18px;
+  text-align: center;
 }
 
-.delivery-title {
-    font-size: 16px;
-    font-weight: 800;
-    margin-bottom: 6px;
+.promo-scope .delivery-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 6px;
 }
 
-.delivery-text {
-    font-size: 14px;
-    line-height: 1.45;
+.promo-scope .delivery-text {
+  font-size: 14px;
+  line-height: 1.45;
 }
 
-.delivery-text strong {
-    text-decoration: underline;
+.promo-scope .delivery-text strong {
+  text-decoration: underline;
 }
