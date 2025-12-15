@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import DealershipPromoPage from "./pages/DealershipPromoPage";
 import SuccessPage from "./pages/SuccessPage";
 import LinksPage from "./pages/LinksPage";
+import LinkedInCopilotPrivacyPolicy from "./pages/linkedincopilot-privacypolicy";
 
 export default function App() {
   return (
@@ -15,6 +16,9 @@ export default function App() {
 
       {/* Dynamic dealership route */}
       <Route path="/:dealershipId" element={<DealershipPromoPage />} />
+
+      {/* Additional Other Side Hustle Pages */}
+      <Route path="/linkedincopilot-privacypolicy" element={<LinkedInCopilotPrivacyPolicy />} />
 
       <Route path="*" element={<div style={{ padding: 24 }}>Not found</div>} />
     </Routes>
