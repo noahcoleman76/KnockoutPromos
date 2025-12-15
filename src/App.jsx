@@ -15,7 +15,7 @@ export default function App() {
       <Route path="/links" element={<LinksPage />} />
 
       {/* Additional Other Side Hustle Pages */}
-      <Route path="/linkedincopilot-privacypolicy" element={<LinkedInCopilotPrivacyPolicy />} />
+      <Route path="/LICPP" element={<LinkedInCopilotPrivacyPolicy />} />
 
       {/* Dynamic dealership route */}
       <Route path="/:dealershipId" element={<DealershipPromoPage />} />
