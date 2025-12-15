@@ -14,11 +14,11 @@ export default function App() {
       <Route path="/success" element={<SuccessPage />} />
       <Route path="/links" element={<LinksPage />} />
 
-      {/* Dynamic dealership route */}
-      <Route path="/:dealershipId" element={<DealershipPromoPage />} />
-
       {/* Additional Other Side Hustle Pages */}
       <Route path="/linkedincopilot-privacypolicy" element={<LinkedInCopilotPrivacyPolicy />} />
+
+      {/* Dynamic dealership route */}
+      <Route path="/:dealershipId" element={<DealershipPromoPage />} />
 
       <Route path="*" element={<div style={{ padding: 24 }}>Not found</div>} />
     </Routes>
