@@ -70,4 +70,8 @@ export const dealership = {
       youtube: "",
     },
   },
+
+  styles: {
+    logoBackground: "#000000", // #ffffff or #000000
+  }
 };

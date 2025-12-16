@@ -1,38 +1,46 @@
 /* =========================
    Promo Pages Scoped Styles
-   Apply ONLY inside .promo-scope
    ========================= */
 
 .promo-scope,
-.promo-scope * ,
+.promo-scope *,
 .promo-scope *::before,
 .promo-scope *::after {
   box-sizing: border-box;
 }
 
-/* "Page" base — replaces body styling but scoped */
+/* Brand tokens */
 .promo-scope {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #f79239, #ffcf44);
-  color: #fff;
+  --qq-orange: #f79239;
+  --qq-yellow: #ffcf44;
+  --qq-green: #177550;
+
+  --bg: #0b0f14;
+  --card: rgba(255, 255, 255, 0.92);
+  --card-border: rgba(15, 23, 42, 0.10);
+
+  --text: #0f172a;
+  --muted: rgba(15, 23, 42, 0.70);
+
+  --ring: rgba(247, 146, 57, 0.35);
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.25);
+
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   min-height: 100vh;
   margin: 0;
   padding: 0;
 
-  /* keeps the gradient filling full height even if content is short */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Full-page layout: card centered, footer at bottom */
-.promo-scope .page {
-  width: 100%;
-  min-height: 100vh;
+  /* Neutral “premium” background + subtle QQ warmth */
+  background:
+    radial-gradient(1200px 500px at 15% 20%, rgba(255, 207, 68, 0.22), transparent 60%),
+    radial-gradient(900px 600px at 90% 30%, rgba(247, 146, 57, 0.18), transparent 55%),
+    linear-gradient(180deg, #0a0d12 0%, #0b0f14 100%);
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #fff;
+  /* outer canvas text */
 }
 
 /* Wrapper that centers the card vertically */
@@ -43,47 +51,112 @@
   justify-content: center;
 
   width: 100%;
-  padding: 16px;
+  padding: 24px 16px 10px 16px
 }
 
-/* Form Container */
+/* Main card */
 .promo-scope .form-container {
-  background: #177550;
-  padding: 24px 20px 28px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: min(90vw, 420px);
-  backdrop-filter: blur(10px);
+  width: min(92vw, 460px);
+  border-radius: 18px;
+  padding: 22px 20px 18px;
+
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  color: var(--text);
 }
 
-/* First logo — keep similar size but responsive */
+/* Header area */
+.promo-scope .promo-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+}
+
+/* Quick Quack logo */
 .promo-scope .brand-logo {
-  width: 90%;
-  max-width: 260px;
+  width: 86%;
+  max-width: 250px;
   height: auto;
-  margin-bottom: 12px;
+  margin: 0;
+  opacity: 0.9;
 }
 
-/* Second logo — constrained inside card, max 150px height */
+.promo-scope .qq-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+
+/* Dealership logo “plate” so any logo looks intentional */
+.promo-scope .logo-plate {
+  width: 100%;
+  border-radius: 14px;
+  padding: 14px 14px;
+
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .promo-scope .partner-logo {
   max-width: 100%;
-  max-height: 150px;
+  max-height: 120px;
   width: auto;
   height: auto;
   object-fit: contain;
-  margin-bottom: 16px;
+  margin: 0;
 }
 
-/* Intro text */
-.promo-scope .intro-text {
-  font-size: 14px;
-  margin: 0 0 20px;
+/* Copy */
+.promo-scope .promo-copy {
+  width: 100%;
   text-align: center;
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.promo-scope .headline {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: var(--text);
+}
+
+.promo-scope .subhead {
+  margin: 0 0 10px;
+  font-size: 13px;
   line-height: 1.4;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.promo-scope .intro-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
 }
 
 /* Form */
@@ -93,70 +166,87 @@
   flex-direction: column;
 }
 
-/* Form Elements */
 .promo-scope label {
-  font-size: 14px;
-  font-weight: bold;
-  display: block;
-  margin-top: 6px;
-  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 10px 0 6px;
   text-align: left;
+  color: rgba(15, 23, 42, 0.85);
 }
 
 .promo-scope .input-field {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border: none;
-  border-radius: 5px;
+  padding: 11px 12px;
+  border-radius: 10px;
   font-size: 14px;
 
-  /* helps beat global inputs */
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  color: var(--text);
+
   outline: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
 }
 
 .promo-scope .input-field:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.45);
-  outline-offset: 2px;
+  border-color: rgba(247, 146, 57, 0.55);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+.promo-scope select.input-field {
+  appearance: none;
 }
 
 /* Button */
 .promo-scope .submit-button {
-  width: 70%;
-  padding: 12px;
-  margin: 12px auto 0;
-  display: block;
-
-  background: #f79239;
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 14px;
   border: none;
-  border-radius: 5px;
+  border-radius: 12px;
 
-  color: #fff;
+  /* Quick Quack accent, but more premium */
+  background: linear-gradient(135deg, var(--qq-orange) 0%, var(--qq-yellow) 100%);
+  box-shadow: 0 10px 24px rgba(247, 146, 57, 0.28);
+
+  color: #111827;
   font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.2px;
 
-  text-decoration: none; /* for <a class="submit-button"> */
+  cursor: pointer;
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
 }
 
 .promo-scope .submit-button:hover {
-  background: #fa9d4c;
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(247, 146, 57, 0.32);
 }
 
-.promo-scope a{
-  margin: 0;
+.promo-scope .submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-/* Footer at bottom */
+/* Knockout watermark/logo */
+.promo-scope .knockout-water-mark {
+  max-width: 11rem;
+  margin: 0px 0 6px;
+  opacity: 0.9;
+}
+
+/* Footer */
 .promo-scope .footer {
   font-size: 12px;
   text-align: center;
-  margin: 0;
-  padding-top: 10px;
-  max-width: 90%;
+  margin: 0 0 18px;
+  padding: 0 16px;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 820px;
   background-color: transparent;
-  border: none;
-  color: black;
 }
 
 /* Links */
@@ -165,79 +255,98 @@
   color: inherit;
 }
 
-/* Thank you heading on success page */
-.promo-scope .thankyou {
-  margin: 0 0 12px;
+/* =========================
+   Success Page polish
+   (applies only when .success is present)
+   ========================= */
+
+.promo-scope .form-container.success {
+  padding: 26px 22px 18px;
 }
 
-/* Next steps area */
-.promo-scope .nextSteps {
-  width: 100%;
-  text-align: left;
-  margin-top: 8px;
-}
-
-/* Bigger "What's Next?" */
-.promo-scope .next-title {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0 0 12px;
+/* Match your “old” success spacing + center alignment */
+.promo-scope .form-container.success .thankyou {
+  font-size: 34px;
+  letter-spacing: -0.6px;
+  margin: 4px 0 10px;
   text-align: center;
 }
 
-/* Bullet list of steps */
-.promo-scope .next-list {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin: 0;
-}
-
-.promo-scope .next-list li {
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 10px;
-  padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Make the button-link look good inside the last bullet */
-.promo-scope .next-list .submit-button {
-  width: 90%;
-  display: inline-block;
-  margin-top: 8px;
-  padding-inline: 18px;
+.promo-scope .form-container.success .intro-text {
+  margin: 0 0 14px;
   text-align: center;
-  margin-right: auto;
-  margin-left: auto;
 }
 
-/* Success delivery callout */
-.promo-scope .delivery-box {
+/* Delivery callout like the old page (but premium) */
+.promo-scope .form-container.success .delivery-box {
   width: 100%;
-  background: rgba(255, 255, 255, 0.14);
-  border: 2px solid rgba(255, 255, 255, 0.28);
-  border-radius: 12px;
+  margin: 10px 0 18px;
   padding: 14px 14px 12px;
-  margin: 0 0 18px;
+  border-radius: 14px;
+
+  background: rgba(247, 146, 57, 0.10);
+  border: 1px solid rgba(247, 146, 57, 0.28);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+
   text-align: center;
 }
 
-.promo-scope .delivery-title {
+.promo-scope .form-container.success .delivery-title {
   font-size: 16px;
-  font-weight: 800;
-  margin-bottom: 6px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  color: rgba(15, 23, 42, 0.90);
 }
 
-.promo-scope .delivery-text {
+.promo-scope .form-container.success .delivery-text {
   font-size: 14px;
   line-height: 1.45;
+  color: rgba(15, 23, 42, 0.75);
 }
 
-.promo-scope .delivery-text strong {
-  text-decoration: underline;
+/* The “24 hours” highlight — clean, obvious, not tacky */
+.promo-scope .form-container.success strong {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 207, 68, 0.55);
+  border: 1px solid rgba(247, 146, 57, 0.35);
+  color: rgba(15, 23, 42, 0.92);
+  font-weight: 900;
 }
-.knockout-water-mark{
-  max-width: 10em;
+
+/* What's next block like old layout */
+.promo-scope .form-container.success .nextSteps {
+  width: 100%;
+  text-align: left;
+  margin-top: 6px;
+}
+
+.promo-scope .form-container.success .next-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  text-align: left;
+  color: rgba(15, 23, 42, 0.92);
+}
+
+.promo-scope .form-container.success .next-list {
   margin: 0;
+  padding-left: 20px;
+}
+
+.promo-scope .form-container.success .next-list li {
+  margin-bottom: 10px;
+  line-height: 1.45;
+  color: rgba(15, 23, 42, 0.78);
+}
+
+/* QQ logo placement on success page */
+.promo-scope .form-container.success .brand-logo {
+  margin-top: 10px;
+  max-width: 220px; /* smaller + calmer */
+  opacity: 0.95;
+}
+.promo-scope .form-container.success .email-bold {
+  font-weight: 900;
 }

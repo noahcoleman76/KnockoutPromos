@@ -1,13 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/promoStyles.css";
-
-import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png";
-import KnockoutLogo from "../assets/Logo Black Text Black Fist.png";
-
+import QQlogo from "../markets/automotive/vendors/Quick Quack/qq-logo.png";
+import KnockoutLogo from "../assets/Logo White Text White Fist (no BG).png";
 import {
   getDealershipById,
-  getAllDealershipEntries, // ✅ add this export
+  getAllDealershipEntries,
 } from "../markets/automotive/distributors/dealerships/dealershipRegistry";
 
 const GOOGLE_SCRIPT_URL =
@@ -170,24 +168,37 @@ export default function DealershipPromoPage({ generic = false }) {
     <div className="page promo-scope">
       <main className="card-wrapper">
         <div className="form-container">
-          {/* Quick Quack logo always */}
-          <img src={QQlogo} alt="Quick Quack Logo" className="brand-logo" />
+          <header className="promo-header">
+            <div className="qq-header">
+              <img src={QQlogo} alt="Quick Quack Logo" className="brand-logo" />
+            </div>
 
-          {/* ✅ Dealership logo ONLY in non-generic mode */}
-          {!isGeneric && entry?.logoUrl ? (
-            <img src={entry.logoUrl} alt="Promotion Logo" className="partner-logo" />
-          ) : null}
+            {!isGeneric && entry?.logoUrl ? (
+              <div className="logo-plate">
+                <img
+                  src={entry.logoUrl}
+                  alt="Promotion Logo"
+                  className="partner-logo"
+                />
+              </div>
+            ) : null}
+          </header>
 
-          {/* ✅ Updated headline/copy for generic */}
-          <p className="intro-text">
-            {isGeneric
-              ? `Your dealership has unlocked an exclusive car wash offer for you. Enjoy ${promo} days free, then $5 off every month after.`
-              : `${resolved.name} has unlocked an exclusive car wash offer for you. Enjoy ${promo} days free, then $5 off every month after.`}
-          </p>
+          <div className="promo-copy">
+            <p className="headline">
+              {isGeneric
+                ? `Your dealership has unlocked an exclusive car wash offer for you.`
+                : `${resolved.name} has unlocked an exclusive car wash offer for you.`}
+            </p>
 
-          <p className="intro-text">
-            Enter your information below to receive your promo code by email.
-          </p>
+            <p className="subhead">
+              Enjoy <strong>{promo} days free</strong>, then <strong>$5 off</strong> every month after.
+            </p>
+
+            <p className="intro-text">
+              Enter your information below to receive your promo code by email.
+            </p>
+          </div>
 
           <form onSubmit={submitForm}>
             <label htmlFor="fname">First Name</label>

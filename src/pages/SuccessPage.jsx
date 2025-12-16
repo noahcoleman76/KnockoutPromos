@@ -1,13 +1,13 @@
 import React from "react";
-import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png"; // adjust path if needed
+import QQlogo from "../markets/automotive/vendors/Quick Quack/qq-logo.png";
 import "../styles/promoStyles.css"
-import KnockoutLogo from "../assets/Logo Black Text Black Fist.png"
+import KnockoutLogo from "../assets/Logo White Text White Fist (no BG).png"
 
 export default function SuccessPage() {
   return (
     <div className="page promo-scope">
       <main className="card-wrapper">
-        <div className="form-container">
+        <div className="form-container success">
           <h1 className="thankyou">Thank You!</h1>
 
           <p className="intro-text">We received your submission successfully.</p>
@@ -25,7 +25,7 @@ export default function SuccessPage() {
 
             <ul className="next-list">
               <li>
-                Check your email (and spam/junk) within <strong>24 hours</strong>.
+                Check your email (and spam/junk) within 24 hours.
               </li>
               <li>
                 Use the promo code in that email to activate your wash benefit and
@@ -33,7 +33,7 @@ export default function SuccessPage() {
               </li>
               <li>
                 Questions or issues? Email us at{" "}
-                <strong>noah@knockoutpromos.com</strong> and we’ll help you out.
+                <span className="email-bold">noah@knockoutpromos.com</span> and we’ll help you out.
               </li>
             </ul>
           </div>
