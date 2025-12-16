@@ -143,12 +143,20 @@
   background: #fa9d4c;
 }
 
+.promo-scope a{
+  margin: 0;
+}
+
 /* Footer at bottom */
 .promo-scope .footer {
   font-size: 12px;
   text-align: center;
-  margin: 12px 16px 20px;
+  margin: 0;
+  padding-top: 10px;
   max-width: 90%;
+  background-color: transparent;
+  border: none;
+  color: black;
 }
 
 /* Links */
@@ -228,4 +236,8 @@
 
 .promo-scope .delivery-text strong {
   text-decoration: underline;
+}
+.knockout-water-mark{
+  max-width: 10em;
+  margin: 0;
 }

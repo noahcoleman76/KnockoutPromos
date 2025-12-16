@@ -1,9 +1,8 @@
-import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png"; // adjust path if needed
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/promoStyles.css"
-console.log("promoStyles loaded");
-
+import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png"; // adjust path if needed
+import KnockoutLogo from "../assets/Logo Black Text Black Fist.png"
 
 // Adjust this import to wherever your registry lives:
 import { getDealershipById } from "../markets/automotive/distributors/dealerships/dealershipRegistry";
@@ -153,8 +152,15 @@ export default function DealershipPromoPage() {
               {submitting ? "Submitting..." : "Submit"}
             </button>
           </form>
+
         </div>
       </main>
+      
+      <a href="https://knockoutpromos.com">
+        {KnockoutLogo ? (
+          <img src={KnockoutLogo} alt="Knockout Promos Logo" className="knockout-water-mark" />
+        ) : null}
+      </a>
 
       <p className="footer">
         This site is powered by Knockout Promos and is authorized by S&amp;D Wash

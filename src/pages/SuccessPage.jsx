@@ -1,6 +1,7 @@
 import React from "react";
 import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png"; // adjust path if needed
 import "../styles/promoStyles.css"
+import KnockoutLogo from "../assets/Logo Black Text Black Fist.png"
 
 export default function SuccessPage() {
   return (
@@ -40,6 +41,12 @@ export default function SuccessPage() {
           <img src={QQlogo} alt="Quick Quack Logo" className="brand-logo" />
         </div>
       </main>
+
+      <a href="https://knockoutpromos.com">
+        {KnockoutLogo ? (
+          <img src={KnockoutLogo} alt="Knockout Promos Logo" className="knockout-water-mark" />
+        ) : null}
+      </a>
 
       <p className="footer">
         This site is powered by CoDev Marketing and is authorized by S&amp;D Wash
