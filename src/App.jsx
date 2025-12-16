@@ -17,6 +17,8 @@ export default function App() {
       {/* Additional Other Side Hustle Pages */}
       <Route path="/LICPP" element={<LinkedInCopilotPrivacyPolicy />} />
 
+      {/* ✅ Generic dealership promo page */}
+      <Route path="/dealershippromo" element={<DealershipPromoPage generic />} />
       {/* Dynamic dealership route */}
       <Route path="/:dealershipId" element={<DealershipPromoPage />} />
 

@@ -1,35 +1,87 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../styles/promoStyles.css"
-import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png"; // adjust path if needed
-import KnockoutLogo from "../assets/Logo Black Text Black Fist.png"
+import "../styles/promoStyles.css";
 
-// Adjust this import to wherever your registry lives:
-import { getDealershipById } from "../markets/automotive/distributors/dealerships/dealershipRegistry";
+import QQlogo from "../markets/automotive/vendors/Quick Quack/QQlogo.png";
+import KnockoutLogo from "../assets/Logo Black Text Black Fist.png";
+
+import {
+  getDealershipById,
+  getAllDealershipEntries, // ✅ add this export
+} from "../markets/automotive/distributors/dealerships/dealershipRegistry";
 
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxB8gsbZb7466WYQtwyE4CVO_9LQDnjzXZfC8t-Q2QPxwFO9LeAb3PBZPzHPillw84L/exec";
 
-export default function DealershipPromoPage() {
+export default function DealershipPromoPage({ generic = false }) {
   const navigate = useNavigate();
   const { dealershipId } = useParams();
 
-  const entry = useMemo(() => getDealershipById(dealershipId), [dealershipId]);
+  // if the route is /dealershippromo, we want generic behavior
+  const isGeneric = generic === true;
+
+  // For normal mode, we resolve a dealership entry from the URL param
+  const entry = useMemo(() => {
+    if (isGeneric) return null;
+    return getDealershipById(dealershipId);
+  }, [dealershipId, isGeneric]);
+
+  // For generic mode dropdown options
+  const dealershipOptions = useMemo(() => {
+    const entries = getAllDealershipEntries?.() || [];
+
+    // Build base list
+    const options = entries
+      .map(({ data }) => {
+        const name =
+          data?.preferredName ||
+          data?.displayName ||
+          data?.legalName ||
+          data?.id ||
+          "";
+
+        return {
+          id: data?.id || "",
+          name,
+        };
+      })
+      // ❌ Remove invalid + template entries
+      .filter(
+        (d) =>
+          d.id &&
+          d.name &&
+          d.name.toLowerCase() !== "template" &&
+          d.id.toLowerCase() !== "template"
+      )
+      // 🔤 Alphabetical
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    // ✅ Append "Other" to the very end
+    options.push({
+      id: "other",
+      name: "Other",
+    });
+
+    return options;
+  }, []);
+
 
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
+  const [selectedDealershipId, setSelectedDealershipId] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  // Mimic your old clearInputs() + window.onload behavior
   useEffect(() => {
     sessionStorage.clear();
     setFname("");
     setLname("");
     setEmail("");
-  }, [dealershipId]);
+    setSelectedDealershipId("");
+  }, [dealershipId, isGeneric]);
 
-  if (!entry) {
+  // If not generic and invalid dealershipId -> show not found
+  if (!isGeneric && !entry) {
     return (
       <div className="page promo-scope">
         <main className="card-wrapper">
@@ -49,11 +101,24 @@ export default function DealershipPromoPage() {
     );
   }
 
-  const { data, logoUrl } = entry;
-
-  // Keep this behavior identical to your HTML version
-  const dealershipName = data?.preferredName || data?.displayName || data?.legalName || "Dealership";
   const promo = "30";
+
+  // Resolve dealershipName + dealershipId for submission based on mode
+  const resolved = useMemo(() => {
+    if (!isGeneric) {
+      const { data } = entry || {};
+      const name =
+        data?.preferredName || data?.displayName || data?.legalName || "Dealership";
+      return { id: data?.id || dealershipId || "", name };
+    }
+
+    // generic mode: find selected
+    const picked = dealershipOptions.find((d) => d.id === selectedDealershipId);
+    return {
+      id: picked?.id || "",
+      name: picked?.name || "Dealership",
+    };
+  }, [isGeneric, entry, dealershipId, dealershipOptions, selectedDealershipId]);
 
   const submitForm = async (event) => {
     event.preventDefault();
@@ -67,13 +132,18 @@ export default function DealershipPromoPage() {
       return;
     }
 
+    if (isGeneric && !resolved.id) {
+      alert("Please select your dealership.");
+      return;
+    }
+
     const formData = {
       fname: f,
       lname: l,
       email: e,
-      dealership: dealershipName,
+      dealership: resolved.name,
       promo,
-      dealershipId: data?.id, // extra helpful field
+      dealershipId: resolved.id,
     };
 
     setSubmitting(true);
@@ -100,17 +170,19 @@ export default function DealershipPromoPage() {
     <div className="page promo-scope">
       <main className="card-wrapper">
         <div className="form-container">
-          {/* First logo (Quick Quack) */}
+          {/* Quick Quack logo always */}
           <img src={QQlogo} alt="Quick Quack Logo" className="brand-logo" />
 
-          {/* Second logo (dealership logo) */}
-          {logoUrl ? (
-            <img src={logoUrl} alt="Promotion Logo" className="partner-logo" />
+          {/* ✅ Dealership logo ONLY in non-generic mode */}
+          {!isGeneric && entry?.logoUrl ? (
+            <img src={entry.logoUrl} alt="Promotion Logo" className="partner-logo" />
           ) : null}
 
+          {/* ✅ Updated headline/copy for generic */}
           <p className="intro-text">
-            {dealershipName} has unlocked an exclusive car wash offer for you.
-            Enjoy {promo} days free, then $5 off every month after.
+            {isGeneric
+              ? `Your dealership has unlocked an exclusive car wash offer for you. Enjoy ${promo} days free, then $5 off every month after.`
+              : `${resolved.name} has unlocked an exclusive car wash offer for you. Enjoy ${promo} days free, then $5 off every month after.`}
           </p>
 
           <p className="intro-text">
@@ -148,17 +220,41 @@ export default function DealershipPromoPage() {
               required
             />
 
+            {/* ✅ Dropdown under email ONLY for /dealershippromo */}
+            {isGeneric ? (
+              <>
+                <label htmlFor="dealershipSelect">Dealership</label>
+                <select
+                  id="dealershipSelect"
+                  className="input-field"
+                  value={selectedDealershipId}
+                  onChange={(e) => setSelectedDealershipId(e.target.value)}
+                  required
+                >
+                  <option value="">Select your dealership</option>
+                  {dealershipOptions.map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {d.name}
+                    </option>
+                  ))}
+                </select>
+              </>
+            ) : null}
+
             <button type="submit" className="submit-button" disabled={submitting}>
               {submitting ? "Submitting..." : "Submit"}
             </button>
           </form>
-
         </div>
       </main>
-      
+
       <a href="https://knockoutpromos.com">
         {KnockoutLogo ? (
-          <img src={KnockoutLogo} alt="Knockout Promos Logo" className="knockout-water-mark" />
+          <img
+            src={KnockoutLogo}
+            alt="Knockout Promos Logo"
+            className="knockout-water-mark"
+          />
         ) : null}
       </a>
 

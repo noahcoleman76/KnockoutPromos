@@ -1,35 +1,42 @@
-// Auto-load all dealership data + logos under:
-// src/markets/automotive/distributors/dealerships/*/
+// src/markets/automotive/distributors/dealerships/dealershipRegistry.js
 
-// Load all data modules
-const dataModules = import.meta.glob(
-  "./*/dealership.data.js",
-  { eager: true }
-);
+// Load all dealership data modules
+const dataModules = import.meta.glob("./*/dealership.data.js", {
+  eager: true,
+});
 
-// Load all logos
-const logoModules = import.meta.glob(
-  "./*/logo.png",
-  { eager: true, as: "url" }
-);
+// Load all logos as URL strings (NEW syntax)
+const logoModules = import.meta.glob("./*/logo.png", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
 
 /**
- * Build a registry like:
+ * registry:
  * {
- *   lowbooksales: { data: {...}, logoUrl: "..." },
- *   asbury: { data: {...}, logoUrl: "..." }
+ *   prestman: { data: {...}, logoUrl: "..." },
+ *   asbury:   { data: {...}, logoUrl: "..." }
  * }
  */
 const registry = {};
 
-for (const [path, mod] of Object.entries(dataModules)) {
-  const data = mod.dealership;
+for (const [dataPath, mod] of Object.entries(dataModules)) {
+  const data =
+    mod?.dealership ??
+    mod?.default?.dealership ??
+    mod?.default ??
+    null;
 
   if (!data?.id) continue;
 
-  // Convert ".../lowbooksales/dealership.data.js" -> ".../lowbooksales/logo.png"
-  const logoPath = path.replace("/dealership.data.js", "/logo.png");
-  const logoUrl = logoModules[logoPath] || null;
+  // "./PrestmanAuto/dealership.data.js" -> "./PrestmanAuto"
+  const folderPath = dataPath.replace("/dealership.data.js", "");
+
+  // Build exact key Vite uses for logo glob
+  const logoKey = `${folderPath}/logo.png`;
+
+  const logoUrl = logoModules[logoKey] ?? null;
 
   registry[data.id] = {
     data,
@@ -39,6 +46,11 @@ for (const [path, mod] of Object.entries(dataModules)) {
 
 export function getDealershipById(id) {
   return registry[id] || null;
+}
+
+// ✅ Use this for dropdowns, lists, etc.
+export function getAllDealershipEntries() {
+  return Object.values(registry);
 }
 
 export function getAllDealerships() {
