@@ -6,6 +6,7 @@ import DealershipPromoPage from "./pages/DealershipPromoPage";
 import SuccessPage from "./pages/SuccessPage";
 import LinksPage from "./pages/LinksPage";
 import LinkedInCopilotPrivacyPolicy from "./pages/linkedincopilot-privacypolicy";
+import QrMakerPage from "./pages/QrMakerPage";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
 
       {/* Additional Other Side Hustle Pages */}
       <Route path="/LICPP" element={<LinkedInCopilotPrivacyPolicy />} />
+      <Route path="/qr" element={<QrMakerPage />} />
 
       {/* ✅ Generic dealership promo page */}
       <Route path="/dealershippromo" element={<DealershipPromoPage generic />} />
