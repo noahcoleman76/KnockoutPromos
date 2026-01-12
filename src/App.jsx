@@ -7,6 +7,7 @@ import SuccessPage from "./pages/SuccessPage";
 import LinksPage from "./pages/LinksPage";
 import LinkedInCopilotPrivacyPolicy from "./pages/linkedincopilot-privacypolicy";
 import QrMakerPage from "./pages/QrMakerPage";
+import QuickQuackPromo from "./pages/QuickQuackInfoPage";
 
 export default function App() {
   return (
@@ -21,6 +22,8 @@ export default function App() {
 
       {/* ✅ Generic dealership promo page */}
       <Route path="/dealershippromo" element={<DealershipPromoPage generic />} />
+      {/* Quick Quack Promotion Information Page */}
+      <Route path="/QuickQuackPromo" element={<QuickQuackPromo generic />} />
       {/* Dynamic dealership route */}
       <Route path="/:dealershipId" element={<DealershipPromoPage />} />
 
