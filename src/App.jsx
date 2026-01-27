@@ -8,6 +8,7 @@ import LinksPage from "./pages/LinksPage";
 import LinkedInCopilotPrivacyPolicy from "./pages/linkedincopilot-privacypolicy";
 import QrMakerPage from "./pages/QrMakerPage";
 import QuickQuackPromo from "./pages/QuickQuackInfoPage";
+import Bamboo from "./pages/Bamboo";
 
 export default function App() {
   return (
@@ -19,6 +20,9 @@ export default function App() {
       {/* Additional Other Side Hustle Pages */}
       <Route path="/LICPP" element={<LinkedInCopilotPrivacyPolicy />} />
       <Route path="/qr" element={<QrMakerPage />} />
+
+      {/* {Temporary} */}
+      <Route path="/bamboo" element={<Bamboo />} />
 
       {/* ✅ Generic dealership promo page */}
       <Route path="/dealershippromo" element={<DealershipPromoPage generic />} />
