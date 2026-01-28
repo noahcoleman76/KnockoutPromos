@@ -605,21 +605,19 @@ function Slide5() {
         {
             name: "Metrics Tracker (org-wide)",
             desc: "Personal metrics tracker + SDR organization tool I built and launched. Now used by every team.",
-            href:
-                "https://niceonline.sharepoint.com/:x:/r/teams/GlobalSalesDevelopmentLeadership/_layouts/15/Doc.aspx?sourcedoc=%7B669DF52F-3BA1-4DFD-8B79-E9B5F3679F7A%7D&file=Noah%20Coleman%20Metrics%20Tracker.xlsx&action=default&mobileredirect=true&wdOrigin=TEAMS-MAGLEV.p2p_ns.rwc&wdExp=TEAMS-TREATMENT&wdhostclicktime=1755025408069&web=1",
+            href: "https://docs.google.com/spreadsheets/d/10-Mo3rYlKQS3vIRGaTHV9pv6_U5Eu0ZQgWXTOXSW_nQ/edit?usp=sharing",
             cta: "Open",
         },
         {
             name: "AE Account Map Tool",
             desc: "Sync tool with my AE to target accounts cleanly (no toe-stepping). Rolled out to my team.",
-            href:
-                "https://niceonline-my.sharepoint.com/:x:/r/personal/noah_coleman_nice_com/_layouts/15/Doc.aspx?sourcedoc=%7BDD5E3441-1CB4-4DF9-BE7C-1293D0796171%7D&file=Book.xlsx&action=editNew&mobileredirect=true&wdOrigin=WAC.EXCEL.HOME-BUTTON%2CAPPHOME-WEB.BANNER.NEWBLANK&wdPreviousSession=739a6dcf-4249-5bbe-313d-3fd32d2742de&wdPreviousSessionSrc=Wac&ct=1767734753863",
+            href: "https://docs.google.com/spreadsheets/d/1ndvkfd2HIx75IwRoeIbT8-b8B7F-wKS7JCdwXUkxyso/edit?usp=sharing",
             cta: "Open",
         },
         {
             name: "BDR Dragon",
             desc: "SDR organization + accountability web app connected with Salesforce (in progress).",
-            href: "http://localhost:5173/",
+            href: "https://noahcoleman76.github.io/BDR-Dragon/",
             cta: "Open",
         },
         {
