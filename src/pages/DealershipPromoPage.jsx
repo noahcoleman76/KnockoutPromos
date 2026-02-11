@@ -69,6 +69,12 @@ export default function DealershipPromoPage({ generic = false }) {
   const [email, setEmail] = useState("");
   const [selectedDealershipId, setSelectedDealershipId] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [dealershipSearch, setDealershipSearch] = useState("");
+  const [showResults, setShowResults] = useState(false);
+
+  const filteredDealerships = dealershipOptions.filter((d) =>
+    d.name.toLowerCase().includes(dealershipSearch.toLowerCase())
+  );
 
   useEffect(() => {
     sessionStorage.clear();
@@ -231,24 +237,60 @@ export default function DealershipPromoPage({ generic = false }) {
               required
             />
 
-            {/* ✅ Dropdown under email ONLY for /dealershippromo */}
+            {/* ✅ Searchable Dealership Selector (scoped) */}
             {isGeneric ? (
               <>
-                <label htmlFor="dealershipSelect">Dealership</label>
-                <select
-                  id="dealershipSelect"
-                  className="input-field"
-                  value={selectedDealershipId}
-                  onChange={(e) => setSelectedDealershipId(e.target.value)}
-                  required
-                >
-                  <option value="">Select your dealership</option>
-                  {dealershipOptions.map((d) => (
-                    <option key={d.id} value={d.id}>
-                      {d.name}
-                    </option>
-                  ))}
-                </select>
+                <label htmlFor="dealershipSearch">Dealership</label>
+
+                <div className="dealership-search">
+                  <input
+                    id="dealershipSearch"
+                    type="text"
+                    className="input-field"
+                    placeholder="Search your dealership..."
+                    value={dealershipSearch}
+                    onChange={(e) => {
+                      setDealershipSearch(e.target.value);
+                      setShowResults(true);
+                      setSelectedDealershipId("");
+                    }}
+                    onFocus={() => setShowResults(true)}
+                    onBlur={() => {
+                      // delay so click registers
+                      window.setTimeout(() => setShowResults(false), 120);
+                    }}
+                    autoComplete="off"
+                    required={!selectedDealershipId}
+                  />
+
+                  {showResults && dealershipSearch && (
+                    <div className="dealership-results" role="listbox">
+                      {filteredDealerships.length > 0 ? (
+                        filteredDealerships.map((d) => (
+                          <button
+                            key={d.id}
+                            type="button"
+                            className="dealership-item"
+                            role="option"
+                            onMouseDown={() => {
+                              // onMouseDown prevents blur-before-click
+                              setDealershipSearch(d.name);
+                              setSelectedDealershipId(d.id);
+                              setShowResults(false);
+                            }}
+                          >
+                            {d.name}
+                          </button>
+                        ))
+                      ) : (
+                        <div className="dealership-empty">No dealerships found</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* keep ID in form submit without showing it */}
+                <input type="hidden" name="dealershipId" value={selectedDealershipId} />
               </>
             ) : null}
 

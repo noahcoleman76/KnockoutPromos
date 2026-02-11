@@ -350,3 +350,82 @@
 .promo-scope .form-container.success .email-bold {
   font-weight: 900;
 }
+
+/* =========================
+   Searchable Dealership UI
+   ========================= */
+
+.promo-scope .dealership-search {
+  position: relative;
+  width: 100%;
+}
+
+.promo-scope .dealership-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+
+  max-height: 240px;
+  overflow: auto;
+
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(10px);
+
+  padding: 6px;
+  z-index: 20;
+}
+
+/* Button rows */
+.promo-scope .dealership-item {
+  width: 100%;
+  text-align: left;
+
+  border: 0;
+  background: transparent;
+  color: rgba(15, 23, 42, 0.90);
+
+  padding: 10px 10px;
+  border-radius: 10px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease;
+}
+
+.promo-scope .dealership-item:hover {
+  background: rgba(247, 146, 57, 0.10);
+}
+
+.promo-scope .dealership-item:active {
+  transform: translateY(1px);
+}
+
+.promo-scope .dealership-item:focus {
+  outline: none;
+  background: rgba(247, 146, 57, 0.14);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* Empty state */
+.promo-scope .dealership-empty {
+  padding: 10px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.55);
+}
+
+/* Optional: slightly tighter scrollbars where supported */
+.promo-scope .dealership-results::-webkit-scrollbar {
+  width: 10px;
+}
+.promo-scope .dealership-results::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.18);
+  border-radius: 999px;
+  border: 3px solid rgba(255, 255, 255, 0.98);
+}
