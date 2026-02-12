@@ -256,7 +256,6 @@ export default function DealershipPromoPage({ generic = false }) {
                     }}
                     onFocus={() => setShowResults(true)}
                     onBlur={() => {
-                      // delay so click registers
                       window.setTimeout(() => setShowResults(false), 120);
                     }}
                     autoComplete="off"
@@ -266,33 +265,62 @@ export default function DealershipPromoPage({ generic = false }) {
                   {showResults && dealershipSearch && (
                     <div className="dealership-results" role="listbox">
                       {filteredDealerships.length > 0 ? (
-                        filteredDealerships.map((d) => (
+                        <>
+                          {filteredDealerships.map((d) => (
+                            <button
+                              key={d.id}
+                              type="button"
+                              className="dealership-item"
+                              role="option"
+                              onMouseDown={() => {
+                                setDealershipSearch(d.name);
+                                setSelectedDealershipId(d.id);
+                                setShowResults(false);
+                              }}
+                            >
+                              {d.name}
+                            </button>
+                          ))}
+
+                          <div className="dealership-divider" />
+
                           <button
-                            key={d.id}
                             type="button"
-                            className="dealership-item"
-                            role="option"
+                            className="dealership-item dealership-other"
                             onMouseDown={() => {
-                              // onMouseDown prevents blur-before-click
-                              setDealershipSearch(d.name);
-                              setSelectedDealershipId(d.id);
+                              setDealershipSearch("Other");
+                              setSelectedDealershipId("other");
                               setShowResults(false);
                             }}
                           >
-                            {d.name}
+                            Dealership Not Listed
                           </button>
-                        ))
+                        </>
                       ) : (
-                        <div className="dealership-empty">No dealerships found</div>
+                        <>
+
+                          <button
+                            type="button"
+                            className="dealership-item dealership-other"
+                            onMouseDown={() => {
+                              setDealershipSearch("Other");
+                              setSelectedDealershipId("other");
+                              setShowResults(false);
+                            }}
+                          >
+                            Dealership Not Listed
+                          </button>
+                        </>
                       )}
                     </div>
                   )}
                 </div>
 
-                {/* keep ID in form submit without showing it */}
+                {/* keep the chosen id available for submit/debug */}
                 <input type="hidden" name="dealershipId" value={selectedDealershipId} />
               </>
             ) : null}
+
 
             <button type="submit" className="submit-button" disabled={submitting}>
               {submitting ? "Submitting..." : "Submit"}
