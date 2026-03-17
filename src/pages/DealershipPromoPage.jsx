@@ -5,11 +5,61 @@ import QQlogo from "../markets/automotive/vendors/Quick Quack/qq-logo.png";
 import KnockoutLogo from "../assets/Logo White Text White Fist (no BG).png";
 import {
   getDealershipById,
-  getAllDealershipEntries,
 } from "../markets/automotive/distributors/dealerships/dealershipRegistry";
 
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxB8gsbZb7466WYQtwyE4CVO_9LQDnjzXZfC8t-Q2QPxwFO9LeAb3PBZPzHPillw84L/exec";
+
+const GENERIC_DEALERSHIP_NAMES = [
+  "Action Auto Lehi",
+"Alpine Overland",
+"Auto Savvy",
+"Axio 9000 South",
+"Axio EV",
+"Axio Southtowne",
+"BMW Pleasant Grove",
+"CarTown",
+"Doug Smith Chrysler Dodge Jeep Ram",
+"Doug Smith Mitsubishi",
+"Doug Smith Subaru",
+"EV Auto",
+"Fiuza Motors",
+"Generous Auto",
+"Jerry Siener GMC",
+"Jerry Siener Kia",
+"Karl Malone Toyota",
+"Kentson",
+"Lithium Auto",
+"Low Book Sales",
+"Mark Miller Subaru Southtowne",
+"Mitsubishi Motors Salt Lake",
+"Murdock Hyundai Murray",
+"National Auto Plaza",
+"National GMC",
+"Parkline Motors",
+"Patriot motors",
+"PMR Auto",
+"Prestman Auto",
+"Revolutionary Auto",
+"Riverton Cheverolet",
+"Sencion Performance ",
+"Southtowne Mitsubishi",
+"SR Prime Auto",
+"Stockton 12 Honda",
+"Summit Auto Sales",
+"Supreme Automotive",
+"Tim Dahle Mazda Southtowne",
+"Tim Dahle Nissan Murray",
+"Tim Dahle Nissan Southtowne",
+"Truck Ranch American Fork",
+"Unlimited Auto Sales",
+"Utah Truck Country",
+"Velocity ",
+"Volkswagon Southtowne",
+"Wade Auto Group"
+];
+
+const OTHER_DEALERSHIP_LABEL = "Other dealership not listed";
 
 export default function DealershipPromoPage({ generic = false }) {
   const navigate = useNavigate();
@@ -26,41 +76,10 @@ export default function DealershipPromoPage({ generic = false }) {
 
   // For generic mode dropdown options
   const dealershipOptions = useMemo(() => {
-    const entries = getAllDealershipEntries?.() || [];
-
-    // Build base list
-    const options = entries
-      .map(({ data }) => {
-        const name =
-          data?.preferredName ||
-          data?.displayName ||
-          data?.legalName ||
-          data?.id ||
-          "";
-
-        return {
-          id: data?.id || "",
-          name,
-        };
-      })
-      // ❌ Remove invalid + template entries
-      .filter(
-        (d) =>
-          d.id &&
-          d.name &&
-          d.name.toLowerCase() !== "template" &&
-          d.id.toLowerCase() !== "template"
-      )
-      // 🔤 Alphabetical
-      .sort((a, b) => a.name.localeCompare(b.name));
-
-    // ✅ Append "Other" to the very end
-    options.push({
-      id: "other",
-      name: "Other",
-    });
-
-    return options;
+    return GENERIC_DEALERSHIP_NAMES.map((name) => ({
+      id: name,
+      name,
+    }));
   }, []);
 
 
@@ -114,6 +133,13 @@ export default function DealershipPromoPage({ generic = false }) {
       const name =
         data?.preferredName || data?.displayName || data?.legalName || "Dealership";
       return { id: data?.id || dealershipId || "", name };
+    }
+
+    if (selectedDealershipId === "other") {
+      return {
+        id: "other",
+        name: OTHER_DEALERSHIP_LABEL,
+      };
     }
 
     // generic mode: find selected
@@ -288,12 +314,12 @@ export default function DealershipPromoPage({ generic = false }) {
                             type="button"
                             className="dealership-item dealership-other"
                             onMouseDown={() => {
-                              setDealershipSearch("Other");
+                              setDealershipSearch(OTHER_DEALERSHIP_LABEL);
                               setSelectedDealershipId("other");
                               setShowResults(false);
                             }}
                           >
-                            Dealership Not Listed
+                            {OTHER_DEALERSHIP_LABEL}
                           </button>
                         </>
                       ) : (
@@ -303,12 +329,12 @@ export default function DealershipPromoPage({ generic = false }) {
                             type="button"
                             className="dealership-item dealership-other"
                             onMouseDown={() => {
-                              setDealershipSearch("Other");
+                              setDealershipSearch(OTHER_DEALERSHIP_LABEL);
                               setSelectedDealershipId("other");
                               setShowResults(false);
                             }}
                           >
-                            Dealership Not Listed
+                            {OTHER_DEALERSHIP_LABEL}
                           </button>
                         </>
                       )}
