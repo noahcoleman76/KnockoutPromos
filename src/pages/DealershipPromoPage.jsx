@@ -13,7 +13,7 @@ const GOOGLE_SCRIPT_URL =
 const GENERIC_DEALERSHIP_NAMES = [
   "Action Auto Lehi",
   "Alpine Overland",
-  "Auto Savvy",
+  "Auto Savvy Draper",
   "Axio 9000 South",
   "Axio EV",
   "Axio Southtowne",
@@ -57,7 +57,18 @@ const GENERIC_DEALERSHIP_NAMES = [
   "Utah Truck Country",
   "Velocity ",
   "Volkswagon Southtowne",
-  "Wade Auto Group"
+  "Wade Auto Group",
+  "Murdock Hyundai of Lindon",
+  "Auto Club",
+  "Doug Smith Kia",
+  "Unique Motors",
+  "Dastrup Auto",
+  "Planet Auto Sales",
+  "Asay Auto",
+  "Auto Savvy Lindon",
+  "Nation Auto Sales",
+  "NexGen Motors",
+  "Revv Auto Sales"
 ];
 
 const OTHER_DEALERSHIP_LABEL = "Other dealership not listed";
