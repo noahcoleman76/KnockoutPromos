@@ -68,7 +68,29 @@ const GENERIC_DEALERSHIP_NAMES = [
   "Auto Savvy Lindon",
   "Nation Auto Sales",
   "NexGen Motors",
-  "Revv Auto Sales"
+  "Revv Auto Sales",
+  "Mark Miller Toyota",
+  "Orem Toyota",
+  "Performance Toyota Bountiful",
+  "Young Toyota",
+  "Murdock Ford",
+  "Tim Dahle Nissan Southtowne",
+  "Murdock Chevrolet",
+  "Jerry Seiner Kia Salt Lake",
+  "Bmw Of Murray",
+  "Mercedes-Benz Of Salt Lake City",
+  "Audi Salt Lake City",
+  "Lexus Of Lindon",
+  "Young Ford Of Ogden",
+  "Young Honda",
+  "Young Kia",
+  "Murdock Acura",
+  "Tim Dahle Ford",
+  "Performance Honda Bountiful",
+  "Performance Ford Lincoln Bountiful",
+  "Wasatch Front Kia",
+  "Honda World",
+  "Riverton Chevrolet"
 ];
 
 const OTHER_DEALERSHIP_LABEL = "Other dealership not listed";
