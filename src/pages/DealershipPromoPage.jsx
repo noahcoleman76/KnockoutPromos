@@ -77,7 +77,6 @@ const GENERIC_DEALERSHIP_NAMES = [
   "Orem Toyota",
   "Sky Chevrolet",
   "Mark Miller Toyota",
-  "Orem Toyota",
   "Performance Toyota Bountiful",
   "Young Toyota",
   "Murdock Ford",
