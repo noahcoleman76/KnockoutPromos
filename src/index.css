@@ -78,6 +78,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
 }
 
 .logo-image {
@@ -87,6 +88,8 @@ body {
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 1rem;
 }
 
@@ -121,27 +124,32 @@ body {
   margin: 0 auto;
 }
 
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  gap: 3rem;
+  align-items: center;
+}
+
 .hero-copy {
-  max-width: 820px;
-  margin: 0 auto;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .hero-title {
-  font-size: clamp(4.5rem, 10vw, 7rem);
+  font-size: clamp(3.4rem, 7vw, 6rem);
   line-height: 1.02;
-  margin: 4rem 0 2rem;
-  text-align: center;
+  margin: 1rem 0 1.5rem;
   color: #ffffff;
 }
 
 .hero-CTA {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.4rem;
   width: 100%;
 }
@@ -157,9 +165,9 @@ body {
 
 .hero-actions {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.8rem;
 }
 
 /* Global button base */
@@ -195,10 +203,8 @@ body {
 /* Hero main CTA — big & loud */
 
 .hero-actions .btn-primary {
-  width: 60vw;
-  max-width: 900px;
-  padding: 1.4rem 0;
-  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  padding: 1rem 1.45rem;
+  font-size: 1rem;
   font-weight: 800;
   text-transform: uppercase;
   box-shadow:
@@ -228,9 +234,8 @@ body {
 
 .hero-actions .btn-outline {
   font-size: 1rem;
-  padding: 0.6rem 1.4rem;
+  padding: 0.95rem 1.25rem;
   width: auto;
-  opacity: 0.7;
 }
 
 .hero-actions .btn-outline:hover {
@@ -241,6 +246,143 @@ body {
 .hero-note {
   font-size: 0.85rem;
   color: var(--muted);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 430px;
+  padding: 1rem;
+}
+
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 2.5rem 1rem 1.5rem;
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(135deg, rgba(236, 35, 38, 0.28), rgba(255, 255, 255, 0.05)),
+    #111217;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.deal-card,
+.deal-metrics {
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 7, 18, 0.9);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.deal-card {
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+}
+
+.deal-card-featured {
+  max-width: 330px;
+  margin: 0 auto;
+}
+
+.deal-card-offset {
+  max-width: 300px;
+  margin: 1.1rem 0 0 auto;
+}
+
+.deal-label {
+  display: inline-flex;
+  margin-bottom: 0.9rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(236, 35, 38, 0.16);
+  color: #ff7d80;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.deal-card strong {
+  display: block;
+  color: #fff;
+  font-size: 1.65rem;
+  line-height: 1.1;
+}
+
+.deal-card p {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+}
+
+.deal-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin: 1.1rem auto 0;
+  max-width: 390px;
+  padding: 0.8rem;
+  border-radius: var(--radius-lg);
+}
+
+.deal-metrics span {
+  color: #f3f4f6;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.deal-listing-card {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: radial-gradient(circle at top left, var(--accent-soft), var(--bg-alt));
+}
+
+.deal-listing-card h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.deal-listing-card strong {
+  color: #fff;
+  font-size: 1.7rem;
+  line-height: 1.1;
+}
+
+.deal-listing-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.deal-listing-card .btn {
+  margin-top: auto;
+}
+
+.deal-listing-card .btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 /* =========================
@@ -260,14 +402,23 @@ body {
   margin: 0 auto;
 }
 
+.page-hero {
+  padding-top: 10rem;
+  padding-bottom: 3rem;
+}
+
 .section-title {
   color: #f3f4f6;
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.08;
 }
 
 .section-text {
   margin: 0.5rem 0;
   color: #d1d5db;
   max-width: 720px;
+  line-height: 1.7;
 }
 
 .list {
@@ -450,6 +601,105 @@ body {
   background: radial-gradient(circle at top left, var(--accent-soft), var(--bg-alt));
 }
 
+.split-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.split-section .coming-soon-card {
+  margin-top: 0;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.section-heading-row .btn {
+  flex: 0 0 auto;
+  margin-top: 0.3rem;
+}
+
+.service-grid,
+.image-idea-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.portfolio-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.portfolio-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f3f4f6;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.portfolio-pill:hover {
+  border-color: rgba(236, 35, 38, 0.8);
+  color: #fff;
+}
+
+.image-idea-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.image-idea-card {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+
+.image-idea-card h3,
+.image-idea-card p {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.image-idea-card h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.45rem;
+}
+
+.image-idea-card p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+
+.image-idea-preview {
+  height: 160px;
+  background:
+    linear-gradient(135deg, rgba(236, 35, 38, 0.82), rgba(255, 255, 255, 0.08)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.08) 0,
+      rgba(255, 255, 255, 0.08) 8px,
+      rgba(255, 255, 255, 0.02) 8px,
+      rgba(255, 255, 255, 0.02) 16px
+    );
+}
+
 .coming-soon-card h3 {
   margin: 0 0 0.75rem;
 }
@@ -539,6 +789,7 @@ body {
    ========================= */
 
 @media (max-width: 900px) {
+  .hero-grid,
   .about-layout {
     grid-template-columns: 1fr;
   }
@@ -546,20 +797,70 @@ body {
   .about-highlight {
     order: -1; /* show highlight above on mobile */
   }
+
+  .hero-copy {
+    max-width: 760px;
+  }
+
+  .hero-visual {
+    min-height: 360px;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .deals-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .split-section,
+  .image-idea-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
+  .header {
+    position: sticky;
+  }
+
+  .header-inner {
+    align-items: flex-start;
+  }
+
+  .logo-image {
+    height: 58px;
+  }
+
+  .nav {
+    gap: 0.35rem;
+  }
+
+  .nav-link {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.45rem;
+  }
+
   .hero {
-    padding-top: 6rem;
+    padding-top: 3.5rem;
     min-height: auto;
   }
 
   .hero-title {
-    margin-top: 2.5rem;
+    margin-top: 0.8rem;
   }
 
   .partnership-grid {
     grid-template-columns: 1fr;
+  }
+
+  .section-heading-row {
+    flex-direction: column;
+  }
+
+  .page-hero {
+    padding-top: 4rem;
   }
 }
 
@@ -567,6 +868,18 @@ body {
   .about-cta-btn {
     width: 100%;
     font-size: 1rem;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deal-metrics {
+    grid-template-columns: 1fr;
   }
 }
 

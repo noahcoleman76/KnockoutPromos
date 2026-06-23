@@ -2,22 +2,48 @@
 import React from "react";
 import logo from "../assets/mainLogo.png";
 
+const developmentServices = [
+  {
+    title: "Custom design",
+    body: "A clean site that fits your business and makes the next step obvious.",
+  },
+  {
+    title: "Mobile-ready builds",
+    body: "Fast pages that work well on phones, tablets, and desktops.",
+  },
+  {
+    title: "Launch support",
+    body: "Help with updates, landing pages, and campaign-ready site changes.",
+  },
+];
+
+const portfolioProjects = [
+  { name: "Live Like Garrett", url: "https://livelikegarrett.com" },
+  { name: "Maracas Mexican Grill", url: "https://maracassantaquin.com" },
+  { name: "RopeHog", url: "https://ropehog.com" },
+  { name: "Aroma Cafe", url: "https://aromacafeutah.com" },
+  { name: "Desaree Stevens Realty", url: "https://www.desareestevens.com" },
+  { name: "South Valley Home Repairs", url: "https://southvalleyhomerepairs.com" },
+];
+
 export default function HomePage() {
   return (
     <div className="app">
-      {/* Header */}
       <header className="header">
         <div className="header-inner">
-          <div className="logo">
+          <a href="#top" className="logo" aria-label="Knockout Promos home">
             <img src={logo} alt="Knockout Promos logo" className="logo-image" />
-          </div>
+          </a>
 
-          <nav className="nav">
+          <nav className="nav" aria-label="Main navigation">
             <a href="#about" className="nav-link">
               About
             </a>
-            <a href="#promos" className="nav-link">
-              Promos
+            <a href="/deals" className="nav-link">
+              Deals
+            </a>
+            <a href="#web-development" className="nav-link">
+              Custom Website Development
             </a>
             <a href="#partnerships" className="nav-link">
               Partnerships
@@ -27,35 +53,51 @@ export default function HomePage() {
       </header>
 
       <main>
-        {/* Hero Section */}
         <section className="hero" id="top">
-          <div className="hero-inner">
+          <div className="hero-inner hero-grid">
             <div className="hero-copy">
+              <p className="eyebrow">Exclusive subscription-service deals</p>
               <h1 className="hero-title">
-                Exclusive offers you{" "}
-                <span className="highlight">won&apos;t find anywhere else.</span>
+                Better deals on the services you already use.
               </h1>
 
               <div className="hero-CTA">
                 <p className="hero-subtitle">
-                  Your source for top-quality products, services, and limited-time
-                  offers you won’t find anywhere else.
+                  We source high-value discounts, free trials, and special offers
+                  for subscription services.
                 </p>
 
                 <div className="hero-actions">
-                  <a href="#promos" className="btn btn-primary">
-                    View Current Offers
+                  <a href="/deals" className="btn btn-primary">
+                    See Deals
                   </a>
-                  <a href="#partnerships" className="btn btn-outline">
-                    Partner With Us
+                  <a href="#web-development" className="btn btn-outline">
+                    Website Development
                   </a>
                 </div>
+              </div>
+            </div>
+
+            <div className="hero-visual" aria-label="Deal preview">
+              <div className="deal-card deal-card-featured">
+                <span className="deal-label">Member Offer</span>
+                <strong>High-value discounts</strong>
+                <p>Subscription offers sourced for real savings</p>
+              </div>
+              <div className="deal-card deal-card-offset">
+                <span className="deal-label">New Deals</span>
+                <strong>Updated as offers launch</strong>
+                <p>Browse current placeholders on the deals page</p>
+              </div>
+              <div className="deal-metrics">
+                <span>Discounts</span>
+                <span>Free trials</span>
+                <span>Bonus perks</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* About Section */}
         <section className="section section-alt" id="about">
           <div className="section-inner">
             <div className="about-tag">About Knockout Promos</div>
@@ -63,159 +105,133 @@ export default function HomePage() {
             <div className="about-layout">
               <div className="about-main">
                 <h2 className="section-title about-title">
-                  What is <span className="highlight">Knockout Promos?</span>
+                  Simple access to better subscription offers.
                 </h2>
 
                 <p className="section-text">
-                  Knockout Promos hooks you up with{" "}
-                  <strong>exclusive, insider-level deals</strong> you won’t find
-                  anywhere else.
+                  Knockout Promos finds and organizes discounts, free trials, and
+                  limited-time offers from subscription services so customers can
+                  quickly see what is worth claiming.
                 </p>
 
                 <p className="section-text">
-                  We partner with strategic suppliers and service providers to bring
-                  you limited-time offers on subscription services, accessories, and
-                  high-value products — including{" "}
-                  <strong>deep discounts, bonuses, and even freebies</strong>.
+                  We also build custom websites and landing pages for businesses
+                  that need a stronger online presence or a cleaner place to send
+                  customers.
                 </p>
-
-                <p className="section-text">
-                  When you claim an offer, <strong>everyone wins</strong>:
-                </p>
-
-                <ul className="about-list">
-                  <li>
-                    <strong>Customers</strong> get access to exclusive deals they
-                    can’t just Google and find.
-                  </li>
-                  <li>
-                    <strong>Brands</strong> gain warm, ready-to-buy customers who
-                    actually stick around.
-                  </li>
-                  <li>
-                    <strong>We</strong> only earn when we help drive real results —
-                    simple, transparent, effective.
-                  </li>
-                </ul>
               </div>
 
               <aside className="about-highlight">
-                <h3>Right now</h3>
+                <h3>What you will find</h3>
                 <p>
-                  We’re already shaking up the <strong>car industry</strong> with
-                  standout perks for new buyers.
+                  Subscription discounts, free trial offers, member perks, and
+                  partner promotions.
                 </p>
 
                 <div className="about-highlight-divider" />
 
                 <p className="about-highlight-sub">
-                  Next up: more markets, more products, more ways to save.
-                </p>
-                <p className="about-highlight-note">
-                  Big deals. Real savings. Only at <strong>Knockout Promos</strong>.
+                  Visit the deals page to see available offers.
                 </p>
               </aside>
             </div>
+          </div>
+        </section>
 
-            <div className="about-cta">
-              <a href="#promos" className="btn btn-primary about-cta-btn">
-                View Current Promotions
+        <section className="section section-alt" id="web-development">
+          <div className="section-inner">
+            <div className="section-heading-row">
+              <div>
+                <p className="eyebrow">Custom Website Development</p>
+                <h2 className="section-title">
+                  Need a website too?
+                </h2>
+              </div>
+              <a href="https://colemandev.com" className="btn btn-outline">
+                View Portfolio
               </a>
-              <p className="about-cta-note">
-                See live deals, discounts & freebies available right now.
-              </p>
+            </div>
+
+            <p className="section-text">
+              Knockout Promos also offers custom website development for local
+              businesses, entrepreneurs, restaurants, service providers, and
+              product-focused brands.
+            </p>
+
+            <div className="service-grid">
+              {developmentServices.map((service) => (
+                <article className="card" key={service.title}>
+                  <h3>{service.title}</h3>
+                  <p>{service.body}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="portfolio-strip" aria-label="Selected portfolio sites">
+              {portfolioProjects.map((project) => (
+                <a
+                  href={project.url}
+                  className="portfolio-pill"
+                  key={project.name}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {project.name}
+                </a>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Promos Section */}
-        <section className="section section-alt" id="promos">
+        <section className="section section-alt" id="partnerships">
           <div className="section-inner">
-            <h2 className="section-title">Check Out Our Current Promos</h2>
+            <h2 className="section-title">Have an offer?</h2>
             <p className="section-text">
-              Soon, you&apos;ll be able to browse live Knockout Promos in your area
-              and online — from subscription services to everyday products at
-              exclusive rates.
-            </p>
-
-            <div className="coming-soon-card">
-              <h3>Markets & Categories</h3>
-              <ul className="list">
-                <li>
-                  Local services – <em>coming soon</em>
-                </li>
-                <li>
-                  Digital subscriptions – <em>coming soon</em>
-                </li>
-                <li>
-                  Retail & product bundles – <em>coming soon</em>
-                </li>
-              </ul>
-              <p className="coming-soon-tag">Promos launching soon. Stay tuned.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Partnerships Section */}
-        <section className="section" id="partnerships">
-          <div className="section-inner">
-            <h2 className="section-title">Partnerships & Collaborations</h2>
-            <p className="section-text">
-              If you&apos;re a business owner, brand, or service provider, Knockout
-              Promos is your new <strong>unfair advantage</strong>.
-            </p>
-            <p className="section-text">
-              We don&apos;t just run ads — we design{" "}
-              <strong>strategic, out-of-the-box campaigns</strong> that are built
-              to move customers from &quot;interested&quot; to &quot;I&apos;m in.&quot;
+              If you run a subscription service or have a strong discount to share,
+              reach out and let us know what you are offering.
             </p>
 
             <div className="partnership-grid">
               <div className="card">
-                <h3>We drive serious buyers</h3>
+                <h3>Offer Strategy</h3>
                 <p>
-                  Our promos are crafted for people already in the market. That
-                  means higher intent, better conversion rates, and more sales from
-                  every campaign.
+                  We help package discounts, free trials, and member perks into
+                  campaigns that are easy for customers to understand.
                 </p>
               </div>
               <div className="card">
-                <h3>Creative, knockout marketing</h3>
+                <h3>Landing Pages</h3>
                 <p>
-                  We specialize in unusual, attention-grabbing strategies: unique
-                  bundles, limited runs, event-based promos, and local partnerships
-                  that break through the noise.
+                  Promo pages can be built around a single partner, market, or
+                  subscription offer so the customer path stays focused.
                 </p>
               </div>
               <div className="card">
-                <h3>Aligned incentives</h3>
+                <h3>Aligned Growth</h3>
                 <p>
-                  We earn when you earn. Our model is commission-driven, so our
-                  success is tied directly to the results we bring you.
+                  Campaigns are designed around real signups, sales, and customer
+                  acquisition instead of surface-level attention.
                 </p>
               </div>
             </div>
 
             <p className="section-text">
-              Interested in partnering with Knockout Promos? For now, reach out
-              directly at{" "}
+              For partnerships or website projects, reach out at{" "}
               <a href="mailto:noah@knockoutpromos.com" className="link">
                 noah@knockoutpromos.com
-              </a>{" "}
-              and let&apos;s talk about your ideal customer and what a
-              knockout-level promo could look like.
+              </a>
+              .
             </p>
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="footer">
           <div className="footer-inner">
             <span>
               © {new Date().getFullYear()} Knockout Promos. All rights reserved.
             </span>
             <span className="footer-small">
-              Built for exclusive deals & strategic partnerships.
+              Subscription deals and custom website development.
             </span>
           </div>
         </footer>
