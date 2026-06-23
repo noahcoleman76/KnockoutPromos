@@ -1,12 +1,12 @@
 // src/pages/HomePage.jsx
 import React from "react";
 import logo from "../assets/mainLogo.png";
-import searchingDealsImage from "../assets/searching.png";
-import weSearchImage from "../assets/wesearch.png";
-import happyDealsImage from "../assets/happydeals.png";
-import sharingDealsImage from "../assets/sharingdeals.png";
-import webDevelopmentImage from "../assets/webdev.png";
-import partnerWithUsImage from "../assets/partnerwithus.png";
+import searchingDealsImage from "../assets/searching-hero.jpg";
+import weSearchImage from "../assets/wesearch-card.jpg";
+import happyDealsImage from "../assets/happydeals-card.jpg";
+import sharingDealsImage from "../assets/sharingdeals-card.jpg";
+import webDevelopmentImage from "../assets/webdev-section.jpg";
+import partnerWithUsImage from "../assets/partnerwithus-section.jpg";
 
 const developmentServices = [
   {
