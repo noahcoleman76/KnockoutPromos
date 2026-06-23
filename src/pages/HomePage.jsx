@@ -1,6 +1,12 @@
 // src/pages/HomePage.jsx
 import React from "react";
 import logo from "../assets/mainLogo.png";
+import searchingDealsImage from "../assets/searching.png";
+import weSearchImage from "../assets/wesearch.png";
+import happyDealsImage from "../assets/happydeals.png";
+import sharingDealsImage from "../assets/sharingdeals.png";
+import webDevelopmentImage from "../assets/webdev.png";
+import partnerWithUsImage from "../assets/partnerwithus.png";
 
 const developmentServices = [
   {
@@ -26,6 +32,27 @@ const portfolioProjects = [
   { name: "South Valley Home Repairs", url: "https://southvalleyhomerepairs.com" },
 ];
 
+const dealSteps = [
+  {
+    title: "We search",
+    body: "We look for valuable discounts and subscription offers.",
+    image: weSearchImage,
+    alt: "A person searching for good deals",
+  },
+  {
+    title: "You save",
+    body: "You find offers worth getting excited about.",
+    image: happyDealsImage,
+    alt: "A woman excited on her phone after finding a good deal",
+  },
+  {
+    title: "Share the value",
+    body: "Send a strong offer to someone who could use it.",
+    image: sharingDealsImage,
+    alt: "Two friends looking at a phone while sharing something valuable",
+  },
+];
+
 export default function HomePage() {
   return (
     <div className="app">
@@ -36,11 +63,11 @@ export default function HomePage() {
           </a>
 
           <nav className="nav" aria-label="Main navigation">
+            <a href="/deals" className="nav-link nav-link-featured">
+              Deals
+            </a>
             <a href="#about" className="nav-link">
               About
-            </a>
-            <a href="/deals" className="nav-link">
-              Deals
             </a>
             <a href="#web-development" className="nav-link">
               Custom Website Development
@@ -78,22 +105,33 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="hero-visual" aria-label="Deal preview">
-              <div className="deal-card deal-card-featured">
-                <span className="deal-label">Member Offer</span>
-                <strong>High-value discounts</strong>
-                <p>Subscription offers sourced for real savings</p>
-              </div>
-              <div className="deal-card deal-card-offset">
-                <span className="deal-label">New Deals</span>
-                <strong>Updated as offers launch</strong>
-                <p>Browse current placeholders on the deals page</p>
-              </div>
-              <div className="deal-metrics">
+            <div className="hero-image-panel">
+              <img
+                src={searchingDealsImage}
+                alt="A man searching on his computer for good deals"
+                className="hero-deal-image"
+              />
+              <div className="hero-image-badge">
                 <span>Discounts</span>
                 <span>Free trials</span>
                 <span>Bonus perks</span>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section deal-story-section">
+          <div className="section-inner">
+            <div className="deal-story-grid">
+              {dealSteps.map((step) => (
+                <article className="deal-story-card" key={step.title}>
+                  <img src={step.image} alt={step.alt} />
+                  <div>
+                    <h2>{step.title}</h2>
+                    <p>{step.body}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -138,58 +176,24 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section section-alt" id="web-development">
-          <div className="section-inner">
-            <div className="section-heading-row">
-              <div>
-                <p className="eyebrow">Custom Website Development</p>
-                <h2 className="section-title">
-                  Need a website too?
-                </h2>
-              </div>
-              <a href="https://colemandev.com" className="btn btn-outline">
-                View Portfolio
-              </a>
-            </div>
-
-            <p className="section-text">
-              Knockout Promos also offers custom website development for local
-              businesses, entrepreneurs, restaurants, service providers, and
-              product-focused brands.
-            </p>
-
-            <div className="service-grid">
-              {developmentServices.map((service) => (
-                <article className="card" key={service.title}>
-                  <h3>{service.title}</h3>
-                  <p>{service.body}</p>
-                </article>
-              ))}
-            </div>
-
-            <div className="portfolio-strip" aria-label="Selected portfolio sites">
-              {portfolioProjects.map((project) => (
-                <a
-                  href={project.url}
-                  className="portfolio-pill"
-                  key={project.name}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {project.name}
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="section section-alt" id="partnerships">
           <div className="section-inner">
-            <h2 className="section-title">Have an offer?</h2>
-            <p className="section-text">
-              If you run a subscription service or have a strong discount to share,
-              reach out and let us know what you are offering.
-            </p>
+            <div className="partnership-layout">
+              <div>
+                <h2 className="section-title">Have an offer?</h2>
+                <p className="section-text">
+                  If you run a subscription service or have a strong discount to
+                  share, reach out and let us know what you are offering.
+                </p>
+              </div>
+
+              <div className="partner-image-panel">
+                <img
+                  src={partnerWithUsImage}
+                  alt="People partnering to share a valuable offer"
+                />
+              </div>
+            </div>
 
             <div className="partnership-grid">
               <div className="card">
@@ -222,6 +226,76 @@ export default function HomePage() {
               </a>
               .
             </p>
+          </div>
+        </section>
+
+        <section className="section section-alt" id="web-development">
+          <div className="section-inner">
+            <div className="web-development-layout">
+              <div>
+                <div className="section-heading-row">
+                  <div>
+                    <p className="eyebrow">Custom Website Development</p>
+                    <h2 className="section-title">
+                      Need a website too?
+                    </h2>
+                  </div>
+                  <a href="#portfolio-websites" className="btn btn-outline">
+                    View Portfolio
+                  </a>
+                </div>
+
+                <p className="section-text">
+                  Knockout Promos also offers custom website development for local
+                  businesses, entrepreneurs, restaurants, service providers, and
+                  product-focused brands.
+                </p>
+              </div>
+
+              <div className="webdev-image-panel">
+                <img
+                  src={webDevelopmentImage}
+                  alt="A team of collaborators building software"
+                />
+              </div>
+            </div>
+
+            <div className="service-grid">
+              {developmentServices.map((service) => (
+                <article className="card" key={service.title}>
+                  <h3>{service.title}</h3>
+                  <p>{service.body}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="portfolio-preview-heading" id="portfolio-websites">
+              <p className="eyebrow">Portfolio Websites</p>
+              <h2>Sites We've Built</h2>
+            </div>
+
+            <div
+              className="portfolio-preview-strip"
+              aria-label="Selected portfolio site previews"
+            >
+              {portfolioProjects.map((project) => (
+                <article className="portfolio-preview-card" key={project.name}>
+                  <div className="portfolio-frame-wrap">
+                    <iframe
+                      src={project.url}
+                      title={`${project.name} website preview`}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="portfolio-preview-info">
+                    <h3>{project.name}</h3>
+                    <a href={project.url} target="_blank" rel="noreferrer">
+                      Visit site
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 

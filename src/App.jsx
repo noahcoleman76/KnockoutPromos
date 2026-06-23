@@ -3,6 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import DealsPage from "./pages/DealsPage";
+import QuickQuackOfferPage from "./pages/QuickQuackOfferPage";
 import DealershipPromoPage from "./pages/DealershipPromoPage";
 import SuccessPage from "./pages/SuccessPage";
 import LinksPage from "./pages/LinksPage";
@@ -13,6 +14,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/deals" element={<DealsPage />} />
+      <Route path="/deals/quick-quack-car-wash" element={<QuickQuackOfferPage />} />
       <Route path="/success" element={<SuccessPage />} />
       <Route path="/links" element={<LinksPage />} />
 
