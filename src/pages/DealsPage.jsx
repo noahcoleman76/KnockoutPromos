@@ -1,28 +1,62 @@
 // src/pages/DealsPage.jsx
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/mainLogo.png";
 import quickQuackLogo from "../assets/qqlogo.png";
 
 export default function DealsPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <div className="app">
       <header className="header">
         <div className="header-inner">
-          <a href="/" className="logo" aria-label="Knockout Promos home">
+          <a
+            href="/"
+            className="logo"
+            aria-label="Knockout Promos home"
+            onClick={closeMenu}
+          >
             <img src={logo} alt="Knockout Promos logo" className="logo-image" />
           </a>
 
-          <nav className="nav" aria-label="Main navigation">
-            <a href="/deals" className="nav-link nav-link-featured">
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="deals-navigation"
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <nav
+            className={`nav ${isMenuOpen ? "nav-open" : ""}`}
+            id="deals-navigation"
+            aria-label="Main navigation"
+          >
+            <a
+              href="/deals"
+              className="nav-link nav-link-featured"
+              onClick={closeMenu}
+            >
               Deals
             </a>
-            <a href="/#about" className="nav-link">
+            <a href="/#about" className="nav-link" onClick={closeMenu}>
               About
             </a>
-            <a href="/#web-development" className="nav-link">
+            <a
+              href="/#web-development"
+              className="nav-link"
+              onClick={closeMenu}
+            >
               Custom Website Development
             </a>
-            <a href="/#partnerships" className="nav-link">
+            <a href="/#partnerships" className="nav-link" onClick={closeMenu}>
               Partnerships
             </a>
           </nav>

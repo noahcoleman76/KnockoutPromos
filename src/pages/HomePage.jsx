@@ -1,5 +1,5 @@
 // src/pages/HomePage.jsx
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/mainLogo.png";
 import searchingDealsImage from "../assets/searching-hero.jpg";
 import weSearchImage from "../assets/wesearch-card.jpg";
@@ -54,25 +54,59 @@ const dealSteps = [
 ];
 
 export default function HomePage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <div className="app">
       <header className="header">
         <div className="header-inner">
-          <a href="#top" className="logo" aria-label="Knockout Promos home">
+          <a
+            href="#top"
+            className="logo"
+            aria-label="Knockout Promos home"
+            onClick={closeMenu}
+          >
             <img src={logo} alt="Knockout Promos logo" className="logo-image" />
           </a>
 
-          <nav className="nav" aria-label="Main navigation">
-            <a href="/deals" className="nav-link nav-link-featured">
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="home-navigation"
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <nav
+            className={`nav ${isMenuOpen ? "nav-open" : ""}`}
+            id="home-navigation"
+            aria-label="Main navigation"
+          >
+            <a
+              href="/deals"
+              className="nav-link nav-link-featured"
+              onClick={closeMenu}
+            >
               Deals
             </a>
-            <a href="#about" className="nav-link">
+            <a href="#about" className="nav-link" onClick={closeMenu}>
               About
             </a>
-            <a href="#web-development" className="nav-link">
+            <a
+              href="#web-development"
+              className="nav-link"
+              onClick={closeMenu}
+            >
               Custom Website Development
             </a>
-            <a href="#partnerships" className="nav-link">
+            <a href="#partnerships" className="nav-link" onClick={closeMenu}>
               Partnerships
             </a>
           </nav>
@@ -80,7 +114,11 @@ export default function HomePage() {
       </header>
 
       <main>
-        <section className="hero" id="top">
+        <section
+          className="hero"
+          id="top"
+          style={{ "--hero-bg-image": `url(${searchingDealsImage})` }}
+        >
           <div className="hero-inner hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">Exclusive subscription-service deals</p>
