@@ -389,8 +389,6 @@ const GENERIC_DEALERSHIP_NAMES = [
   "AFFORDABLE AUTO SALES"
 ];
 
-const OTHER_DEALERSHIP_LABEL = "Other dealership not listed";
-
 export default function DealershipPromoPage({ generic = false }) {
   const navigate = useNavigate();
   const { dealershipId } = useParams();
@@ -463,13 +461,6 @@ export default function DealershipPromoPage({ generic = false }) {
       const name =
         data?.preferredName || data?.displayName || data?.legalName || "Dealership";
       return { id: data?.id || dealershipId || "", name };
-    }
-
-    if (selectedDealershipId === "other") {
-      return {
-        id: "other",
-        name: OTHER_DEALERSHIP_LABEL,
-      };
     }
 
     // generic mode: find selected
@@ -621,52 +612,25 @@ export default function DealershipPromoPage({ generic = false }) {
                   {showResults && dealershipSearch && (
                     <div className="dealership-results" role="listbox">
                       {filteredDealerships.length > 0 ? (
-                        <>
-                          {filteredDealerships.map((d) => (
-                            <button
-                              key={d.id}
-                              type="button"
-                              className="dealership-item"
-                              role="option"
-                              onMouseDown={() => {
-                                setDealershipSearch(d.name);
-                                setSelectedDealershipId(d.id);
-                                setShowResults(false);
-                              }}
-                            >
-                              {d.name}
-                            </button>
-                          ))}
-
-                          <div className="dealership-divider" />
-
+                        filteredDealerships.map((d) => (
                           <button
+                            key={d.id}
                             type="button"
-                            className="dealership-item dealership-other"
+                            className="dealership-item"
+                            role="option"
                             onMouseDown={() => {
-                              setDealershipSearch(OTHER_DEALERSHIP_LABEL);
-                              setSelectedDealershipId("other");
+                              setDealershipSearch(d.name);
+                              setSelectedDealershipId(d.id);
                               setShowResults(false);
                             }}
                           >
-                            {OTHER_DEALERSHIP_LABEL}
+                            {d.name}
                           </button>
-                        </>
+                        ))
                       ) : (
-                        <>
-
-                          <button
-                            type="button"
-                            className="dealership-item dealership-other"
-                            onMouseDown={() => {
-                              setDealershipSearch(OTHER_DEALERSHIP_LABEL);
-                              setSelectedDealershipId("other");
-                              setShowResults(false);
-                            }}
-                          >
-                            {OTHER_DEALERSHIP_LABEL}
-                          </button>
-                        </>
+                        <div className="dealership-empty">
+                          No matching dealerships found.
+                        </div>
                       )}
                     </div>
                   )}
